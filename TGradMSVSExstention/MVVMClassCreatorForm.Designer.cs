@@ -1,4 +1,4 @@
-﻿namespace TGradMSVSExstention
+﻿namespace TGradMSVSExtention
 {
     partial class MVVMClassCreatorForm
     {

@@ -13,7 +13,7 @@ using EnvDTE;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
-namespace TGradMSVSExstention
+namespace TGradMSVSExtention
 {
     /// <summary>
     /// Command handler
@@ -100,18 +100,25 @@ namespace TGradMSVSExstention
             string title = "MVVMClassCreator";
             new MVVMClassCreatorForm().Show();
         }
-
-        private void GenerateModelClass(string className, Project model)
+        
+        /// <summary>
+        /// M, V, and VM templates are to simple so they can be generated via the same method. 
+        /// This function is going to be splitted into 3 ( or possibly more ) functions or 
+        /// it's going to take a template of class to generate. TODO
+        /// </summary>
+        /// <param name="className"></param>
+        /// <param name="project"></param>
+        private void GenerateMVVMClass(string className, Project project, string format)
         {
-            string dir = Path.GetDirectoryName(model.FullName) + string.Format("\\{0}s", className);
-            model.ProjectItems.AddFolder(string.Format("{0}s", className));
-            string modelcs = string.Format(modelFormat, string.Format("{0}.{1}s", model.Name, className), className);
+            string dir = Path.GetDirectoryName(project.FullName) + string.Format("\\{0}s", className);
+            project.ProjectItems.AddFolder(string.Format("{0}s", className));
+            string cs = string.Format(format, string.Format("{0}.{1}s", project.Name, className), className);
             string filePath = dir + "\\" + className + ".cs";
             if (!File.Exists(filePath))
             {
                 File.Create(filePath).Close();
-                File.WriteAllText(filePath, modelcs);
-                model.ProjectItems.AddFromFile(filePath);
+                File.WriteAllText(filePath, cs);
+                project.ProjectItems.AddFromFile(filePath);
             }
         }
 
@@ -154,7 +161,9 @@ namespace TGradMSVSExstention
                 MessageBox.Show("Missing a project of MVVM model");
                 return;
             }
-            GenerateModelClass(className, model);
+            GenerateMVVMClass(className, model, modelFormat);
+            GenerateMVVMClass(className, view, viewFormat);
+            GenerateMVVMClass(className, viewmodel, viewModelFormat);
             MessageBox.Show("Done");
         }
 
