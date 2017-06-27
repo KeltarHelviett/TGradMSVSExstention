@@ -134,7 +134,7 @@ namespace TGradMSVSExtention
             catch (Exception ex)
             {
                 Console.Error.WriteLine(ex.Message);
-                MessageBox.Show("There is not opened solution");
+                MessageBox.Show("There is no opened solution");
                 return;
             }
             try
@@ -148,7 +148,7 @@ namespace TGradMSVSExtention
                     else
                     {
                         model = pname.Contains("model") ? p : model;
-                        view  = pname.Contains("view")  ? p : model;
+                        view  = pname.Contains("view")  ? p : view;
                     }
 
                 }
