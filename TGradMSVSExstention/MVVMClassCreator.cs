@@ -96,9 +96,7 @@ namespace TGradMSVSExtention
         /// <param name="e">Event args.</param>
         private void MenuItemCallback(object sender, EventArgs e)
         {
-            string message = string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.GetType().FullName);
-            string title = "MVVMClassCreator";
-            new MVVMClassCreatorForm().Show();
+            new MVVMClassCreatorWindow().Show();
         }
         
         /// <summary>
@@ -134,7 +132,6 @@ namespace TGradMSVSExtention
             catch (Exception ex)
             {
                 Console.Error.WriteLine(ex.Message);
-                MessageBox.Show("There is no opened solution");
                 return;
             }
             try
@@ -158,13 +155,11 @@ namespace TGradMSVSExtention
             catch (Exception ex)
             {
                 Console.Error.WriteLine(ex.Message);
-                MessageBox.Show("Missing a project of MVVM model");
                 return;
             }
             GenerateMVVMClass(className, model, modelFormat);
             GenerateMVVMClass(className, view, viewFormat);
             GenerateMVVMClass(className, viewmodel, viewModelFormat);
-            MessageBox.Show("Done");
         }
 
         private string modelFormat = @"
