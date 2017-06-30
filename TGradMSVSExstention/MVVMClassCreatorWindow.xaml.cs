@@ -15,14 +15,13 @@ using System.Windows.Shapes;
 
 namespace TGradMSVSExtention
 {
-    /// <summary>
-    /// Interaction logic for MVVMClassCreatorWindow.xaml
-    /// </summary>
+  
     public partial class MVVMClassCreatorWindow : Window
     {
         public MVVMClassCreatorWindow()
         {
             InitializeComponent();
+            ClassNameTB.Text = Guid.NewGuid().ToString();
         }
 
         private void AcceptBtn_Click(object sender, RoutedEventArgs e)
@@ -34,7 +33,6 @@ namespace TGradMSVSExtention
                 this.Close();
                 return;
             }
-            MVVMClassCreator.Instance.GenerateMVVMClasses(className);   
         }
     }
 }

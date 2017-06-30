@@ -5,13 +5,37 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TGradMSVSExtention"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <TextBox x:Name="ClassNameTB" HorizontalAlignment="Left" Height="23" Margin="142,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="AcceptBtn" Content="OK" HorizontalAlignment="Left" Margin="106,213,0,0" VerticalAlignment="Top" Width="75" Click="AcceptBtn_Click"/>
-        <Label x:Name="label" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,101,0,0">
-            <Label x:Name="ClassNameLabel" Content="Class Name"/>
+             d:DesignHeight="500" d:DesignWidth="500">
+    <Grid Margin="0,0,-8,0" Width="500" Height="500">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="111*"/>
+            <ColumnDefinition Width="389*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="ClassNameTB" HorizontalAlignment="Left" Height="23" Margin="22,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+        <Button x:Name="AcceptBtn" Content="OK" HorizontalAlignment="Left" Margin="106,213,0,0" VerticalAlignment="Top" Width="75" Click="AcceptBtn_Click" Grid.ColumnSpan="2"/>
+        <Label x:Name="label" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,101,0,0"/>
+        <Label x:Name="ClassNameLabel" Content="Class Name" RenderTransformOrigin="0.562,-0.208" Margin="19,22,10,450">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="0"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0"/>
+                </TransformGroup>
+            </Label.RenderTransform>
         </Label>
+        <CheckBox x:Name="ModelCB" Content="Model" HorizontalAlignment="Left" Margin="29,66,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.69,1.267">
+            <CheckBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1" ScaleX="1"/>
+                    <SkewTransform AngleY="0" AngleX="0"/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </CheckBox.RenderTransform>
+        </CheckBox>
+        <CheckBox x:Name="ViewCB" Content="View" HorizontalAlignment="Left" Margin="29,96,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="ViewModelCB" Content="View Model" HorizontalAlignment="Left" Margin="29,126,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>

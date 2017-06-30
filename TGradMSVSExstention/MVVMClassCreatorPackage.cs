@@ -48,7 +48,7 @@ namespace TGradMSVSExtention
         public const string PackageGuidString = "6f1b177b-9895-4638-9b10-828ba89a556b";
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MVVMClassCreator"/> class.
+        /// Initializes a new instance of the <see cref="MVVMClassCreatorManager"/> class.
         /// </summary>
         public MVVMClassCreatorPackage()
         {
@@ -66,7 +66,7 @@ namespace TGradMSVSExtention
         /// </summary>
         protected override void Initialize()
         {
-            MVVMClassCreator.Initialize(this);
+            MVVMClassCreatorManager.Initialize(this);
             base.Initialize();
         }
 

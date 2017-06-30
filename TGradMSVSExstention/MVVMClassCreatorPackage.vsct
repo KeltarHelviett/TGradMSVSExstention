@@ -35,11 +35,26 @@
          other menus or buttons (commands); from a visual point of view you can see the
          group as the part of a menu contained between two lines. The parent of a group
          must be a menu. -->
+    
     <Groups>
-      <Group guid="guidMVVMClassCreatorPackageCmdSet" id="MyMenuGroup" priority="0x0600">
-        <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS"/>
+      <Group guid="guidCmdSet" id="ToolsMVVMGrpId" priority="0x0800">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS" />
+      </Group>
+      <Group guid="guidCmdSet" id="MVVMSubMenuGrpId" priority="0x1000">
+        <Parent guid="guidCmdSet" id="MVVMClassCreationMenu"/>
       </Group>
     </Groups>
+
+    <Menus>
+      <Menu guid="guidCmdSet" id="MVVMClassCreationMenu" type="Menu" priority="0x1000">
+        <Parent guid="guidCmdSet" id="ToolsMVVMGrpId" />
+        <CommandFlag>IconAndText</CommandFlag>
+        <Strings>
+          <ButtonText>MVVM Class Creation</ButtonText>
+          <CommandName></CommandName>
+        </Strings>
+      </Menu>
+    </Menus>
 
     <!--Buttons section. -->
     <!--This section defines the elements the user can interact with, like a menu command or a button
@@ -52,11 +67,21 @@
               <CommandFlag>DefaultInvisible</CommandFlag>
               <CommandFlag>DynamicVisibility</CommandFlag>
           If you do not want an image next to your command, remove the Icon node /> -->
-      <Button guid="guidMVVMClassCreatorPackageCmdSet" id="MVVMClassCreatorId" priority="0x0100" type="Button">
-        <Parent guid="guidMVVMClassCreatorPackageCmdSet" id="MyMenuGroup" />
-        <Icon guid="guidImages" id="bmpPic1" />
+      <Button guid="guidCmdSet" id="CreateClassesMenuItem" priority="0x1000" type="Button">
+        <Parent guid="guidCmdSet" id="MVVMSubMenuGrpId"/>
+        <CommandFlag>TextOnly</CommandFlag>
         <Strings>
-          <ButtonText>Invoke MVVMClassCreator</ButtonText>
+          <ButtonText>Create Classes...</ButtonText>
+          <CommandName></CommandName>
+        </Strings>
+      </Button>
+
+      <Button guid="guidCmdSet" id="SettingsMenuItem" priority="0x1000" type="Button">
+        <Parent guid="guidCmdSet" id="MVVMSubMenuGrpId"/>
+        <CommandFlag>TextOnly</CommandFlag>
+        <Strings>
+          <ButtonText>Settings...</ButtonText>
+          <CommandName></CommandName>
         </Strings>
       </Button>
     </Buttons>
@@ -76,11 +101,14 @@
     <!-- This is the package guid. -->
     <GuidSymbol name="guidMVVMClassCreatorPackage" value="{6f1b177b-9895-4638-9b10-828ba89a556b}" />
 
-    <!-- This is the guid used to group the menu commands together -->
-    <GuidSymbol name="guidMVVMClassCreatorPackageCmdSet" value="{fc766c36-b4c6-4d8f-a8b1-f8f2df0a9558}">
-      <IDSymbol name="MyMenuGroup" value="0x1020" />
-      <IDSymbol name="MVVMClassCreatorId" value="0x0100" />
+    <GuidSymbol name="guidCmdSet" value="{fc766c36-b4c6-4d8f-a8b1-f8f2df0a9558}">
+      <IDSymbol name="ToolsMVVMGrpId" value="0x1020" />
+      <IDSymbol name="MVVMClassCreationMenu" value="0x1021"/>
+      <IDSymbol name="MVVMSubMenuGrpId" value="0x1022"/>
+      <IDSymbol name="CreateClassesMenuItem" value="0x1023"/>
+      <IDSymbol name="SettingsMenuItem" value="0x1024"/>
     </GuidSymbol>
+    
 
     <GuidSymbol name="guidImages" value="{4c6784ad-15dc-4196-97ff-eb40a35a621a}" >
       <IDSymbol name="bmpPic1" value="1" />
