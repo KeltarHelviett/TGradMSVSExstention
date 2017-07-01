@@ -24,7 +24,7 @@ namespace TGradMSVSExtention
             ClassNameTB.Text = Guid.NewGuid().ToString();
         }
 
-        private void AcceptBtn_Click(object sender, RoutedEventArgs e)
+        private void AcceptBtnClick(object sender, RoutedEventArgs e)
         {
             string className = ClassNameTB.Text;
             if (className == "")

@@ -74,7 +74,7 @@ namespace TGradMSVSExtention
         
         private void SettingsMenuItemCallback(object sender, EventArgs e)
         {
-            MessageBox.Show("Settings");
+            new SettingsWindow().Show(); 
         }
     }
 }
