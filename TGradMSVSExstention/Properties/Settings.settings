@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TGradMSVSExtention.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Model" GenerateDefaultValueInCode="false" Type="TGradMSVSExtention.TemplateSrc" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="View" Type="TGradMSVSExtention.TemplateSrc" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ViewModel" Type="TGradMSVSExtention.TemplateSrc" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>

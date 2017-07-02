@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("TGradMSVSExtention")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Asdf")]
 [assembly: AssemblyProduct("TGradMSVSExtention")]
 [assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]

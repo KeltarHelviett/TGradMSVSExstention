@@ -32,19 +32,29 @@ namespace TGradMSVSExtention
             sp.Height = SettingsPanel.Height;
             string[] classNames = { "Model", "View", "View Model"};
             Thickness margin = new Thickness(0, 0, 20, 0);
-            RoutedEventHandler eh = new RoutedEventHandler((sndr, rea) => { MessageBox.Show("In OpenDialog"); });
             int rowCounter = -1;
             Grid g = new Grid() { Width = sp.Width, Height = sp.Height };
             sp.Children.Add(g);
             g.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(0, GridUnitType.Auto) });
             g.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(0, GridUnitType.Auto) });
             g.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(0, GridUnitType.Auto) });
+            RoutedEventHandler eh = new RoutedEventHandler((sndr, rea) =>
+            {
+                using (var dlg = new System.Windows.Forms.FolderBrowserDialog())
+                {
+                    var res = dlg.ShowDialog();
+                    if (res == System.Windows.Forms.DialogResult.OK && !string.IsNullOrWhiteSpace(dlg.SelectedPath))
+                    {
+                        ((sndr as Button).Tag as TextBox).Text = dlg.SelectedPath;
+                    }
+                }
+            });
             foreach (string name in classNames)
             {
                 Label l = new Label() { Margin = margin, Content = name/*, Width = 50, Height = 20*/};
 
-                TextBox tb = new TextBox() { Margin = margin, Width = 200,  Height = 20};
-                Button b = new Button() { Margin = margin, Content = "Brows...", Height = 20 };
+                TextBox tb = new TextBox() { Margin = margin, Width = 200,  Height = 20, Text = Config.GetTemplateSource(name.Replace(" ", ""))};
+                Button b = new Button() { Margin = margin, Content = "Brows...", Height = 20, Tag = tb };
                 g.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(0, GridUnitType.Auto) });
                 rowCounter++;
                 b.Click += eh;

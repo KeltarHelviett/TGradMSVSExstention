@@ -23,7 +23,6 @@ namespace TGradMSVSExtention
         public const int SettingsCmdId = 0x1024;
 
         public static readonly Guid CommandSet = new Guid("fc766c36-b4c6-4d8f-a8b1-f8f2df0a9558");
-        //public static readonly Guid SubMenuCommandSet = new Guid("933ddd46-345e-43d0-9fea-f7d6f91e2221");
 
         private readonly Package package;
 
@@ -46,6 +45,7 @@ namespace TGradMSVSExtention
                 commandService.AddCommand(createClasses);
                 commandService.AddCommand(settings);
             }
+            Config.Load();
         }
 
         public static MVVMClassCreatorManager Instance
