@@ -72,7 +72,6 @@
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TemplateSrc.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

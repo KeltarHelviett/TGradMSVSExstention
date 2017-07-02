@@ -53,7 +53,9 @@ namespace TGradMSVSExtention
             {
                 Label l = new Label() { Margin = margin, Content = name/*, Width = 50, Height = 20*/};
 
-                TextBox tb = new TextBox() { Margin = margin, Width = 200,  Height = 20, Text = Config.GetTemplateSource(name.Replace(" ", ""))};
+                TextBox tb = new TextBox() { Margin = margin, Width = 200, Height = 20, Text = Config.GetTemplateSource(name.Replace(" ", "")),
+                    Name = name.Replace(" ", "") + "TB"
+                };
                 Button b = new Button() { Margin = margin, Content = "Brows...", Height = 20, Tag = tb };
                 g.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(0, GridUnitType.Auto) });
                 rowCounter++;
@@ -71,6 +73,35 @@ namespace TGradMSVSExtention
                 Grid.SetColumn(tb, 1);
                 Grid.SetColumn(b, 2);
             }
+            var OKBtnClick = OKBtn.Tag as RoutedEventHandler;
+            if (OKBtnClick != null)
+                OKBtn.Click -= OKBtnClick;
+            OKBtn.Click += new RoutedEventHandler((sndr, rea) =>
+            {
+                var tbs = g.Children.OfType<TextBox>().ToArray();
+                
+                foreach (string name in classNames)
+                {
+                    string tbname = name.Replace(" ", "") + "TB";
+                    TextBox namedtb = null;
+                    foreach (var tb in tbs)
+                    {
+                        if (tb.Name == tbname)
+                        {
+                            namedtb = tb;
+                            break;
+                        }
+                    }
+                    Config.SetTemplateSource(name, namedtb.Text);
+                }
+                Config.Save();
+                this.Close();
+            });
+        }
+
+        private void CancelBtnClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

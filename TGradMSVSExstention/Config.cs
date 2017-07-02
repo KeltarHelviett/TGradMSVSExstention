@@ -19,23 +19,9 @@ namespace TGradMSVSExtention
     {
         static public void SetTemplateSource(string name, string value)
         {
-            var ts = Settings.Default[name] as TemplateSrc;
-            if (ts != null)
+            if (Directory.Exists(value))
             {
-                if (Directory.Exists(value))
-                {
-                    ts.Folder = value;
-                    ts.File = "";
-                }
-                else if (File.Exists(value))
-                {
-                    ts.File = value;
-                    ts.Folder = "";
-                }
-                else
-                {
-                    MessageBox.Show("Inccorrect input");
-                }
+                Settings.Default[name + "Folder"] = value;
             }
         }
 
@@ -49,25 +35,12 @@ namespace TGradMSVSExtention
 
         static public string GetTemplateSource(string name)
         {
-            var ts = Settings.Default[name] as TemplateSrc;
-            if (ts != null)
-            {
-                return ts.Folder != "" ? ts.Folder : ts.File;
-            }
-            return "";
+            
+            return Settings.Default[name + "Folder"] as string;
         }
 
         static public bool Load()
         {
-            string[] names = new string[] { "Model", "View", "ViewModel"};
-            foreach (string name in names)
-            {
-                Settings.Default.Properties[name].DefaultValue = new TemplateSrc();
-                if (Settings.Default[name] == null)
-                    Settings.Default[name] = Settings.Default.Properties[name].DefaultValue;
-            }
-            Settings.Default.Save();
-            Settings.Default.Reload();
             return true;
         }
 

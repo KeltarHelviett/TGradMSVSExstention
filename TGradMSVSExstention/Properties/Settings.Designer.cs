@@ -25,34 +25,73 @@ namespace TGradMSVSExtention.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::TGradMSVSExtention.TemplateSrc Model {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ModelFolder {
             get {
-                return ((global::TGradMSVSExtention.TemplateSrc)(this["Model"]));
+                return ((string)(this["ModelFolder"]));
             }
             set {
-                this["Model"] = value;
+                this["ModelFolder"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::TGradMSVSExtention.TemplateSrc View {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ViewFolder {
             get {
-                return ((global::TGradMSVSExtention.TemplateSrc)(this["View"]));
+                return ((string)(this["ViewFolder"]));
             }
             set {
-                this["View"] = value;
+                this["ViewFolder"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::TGradMSVSExtention.TemplateSrc ViewModel {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ViewModelFolder {
             get {
-                return ((global::TGradMSVSExtention.TemplateSrc)(this["ViewModel"]));
+                return ((string)(this["ViewModelFolder"]));
             }
             set {
-                this["ViewModel"] = value;
+                this["ViewModelFolder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string StandartModelTemplate {
+            get {
+                return ((string)(this["StandartModelTemplate"]));
+            }
+            set {
+                this["StandartModelTemplate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string StandartViewTemplate {
+            get {
+                return ((string)(this["StandartViewTemplate"]));
+            }
+            set {
+                this["StandartViewTemplate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string StandartViewModelTemplate {
+            get {
+                return ((string)(this["StandartViewModelTemplate"]));
+            }
+            set {
+                this["StandartViewModelTemplate"] = value;
             }
         }
     }

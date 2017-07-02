@@ -12,7 +12,9 @@
                 <TreeViewItem x:Name="GeneralTemplatesTVI" Header="Templates" HorizontalAlignment="Left" Width="127" Selected="GeneralTemplatesTVISelected"/>
             </TreeViewItem>
         </TreeView>
-        <StackPanel x:Name="SettingsPanel" Margin="165,30,10,10"/>
+        <StackPanel x:Name="SettingsPanel" Margin="165,30,10,35"/>
+        <Button x:Name="OKBtn" Content="OK" HorizontalAlignment="Left" Margin="418,348,0,0" VerticalAlignment="Top" Width="54"/>
+        <Button x:Name="CancelBtn" Content="Cancel" HorizontalAlignment="Left" Margin="487,348,0,0" VerticalAlignment="Top" Width="86" Click="CancelBtnClick"/>
 
     </Grid>
 </Window>
