@@ -63,9 +63,6 @@ namespace TGradMSVSExtention
                 g.Children.Add(l);
                 g.Children.Add(tb);
                 g.Children.Add(b);
-                //sp.Children.Add(l);
-                //sp.Children.Add(tb);
-                //sp.Children.Add(b);
                 Grid.SetRow(l, rowCounter);
                 Grid.SetRow(tb, rowCounter);
                 Grid.SetRow(b, rowCounter);
