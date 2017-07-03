@@ -11,14 +11,33 @@
     <Setting Name="ViewModelFolder" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="StandartModelTemplate" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="DefaultModel" Type="System.String" Scope="User">
+      <Value Profile="(Default)">namespace %namespace%
+{
+    public class %classname%
+    {
+    }
+}</Value>
     </Setting>
-    <Setting Name="StandartViewTemplate" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="DefaultView" Type="System.String" Scope="User">
+      <Value Profile="(Default)">namespace %namespace%
+{
+    public class %classname%
+    {
+    	public %classname%()
+    	{
+    		InitializeComponent();
+    	}
+    }
+}</Value>
     </Setting>
-    <Setting Name="StandartViewModelTemplate" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="DefaultViewModel" Type="System.String" Scope="User">
+      <Value Profile="(Default)">namespace %namespace%
+{
+    public class %classname%
+    {
+    }
+}</Value>
     </Setting>
   </Settings>
 </SettingsFile>

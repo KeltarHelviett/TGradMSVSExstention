@@ -46,6 +46,8 @@ namespace TGradMSVSExtention
                 commandService.AddCommand(settings);
             }
             Config.Load();
+            DTE dte = (DTE)this.ServiceProvider.GetService(typeof(DTE));
+            MVVMClassCreator.InitializeDTE(dte);
         }
 
         public static MVVMClassCreatorManager Instance

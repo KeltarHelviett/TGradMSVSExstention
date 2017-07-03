@@ -61,37 +61,38 @@ namespace TGradMSVSExtention.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string StandartModelTemplate {
+        [global::System.Configuration.DefaultSettingValueAttribute("namespace %namespace%\r\n{\r\n    public class %classname%\r\n    {\r\n    }\r\n}")]
+        public string DefaultModel {
             get {
-                return ((string)(this["StandartModelTemplate"]));
+                return ((string)(this["DefaultModel"]));
             }
             set {
-                this["StandartModelTemplate"] = value;
+                this["DefaultModel"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string StandartViewTemplate {
+        [global::System.Configuration.DefaultSettingValueAttribute("namespace %namespace%\r\n{\r\n    public class %classname%\r\n    {\r\n    \tpublic %class" +
+            "name%()\r\n    \t{\r\n    \t\tInitializeComponent();\r\n    \t}\r\n    }\r\n}")]
+        public string DefaultView {
             get {
-                return ((string)(this["StandartViewTemplate"]));
+                return ((string)(this["DefaultView"]));
             }
             set {
-                this["StandartViewTemplate"] = value;
+                this["DefaultView"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string StandartViewModelTemplate {
+        [global::System.Configuration.DefaultSettingValueAttribute("namespace %namespace%\r\n{\r\n    public class %classname%\r\n    {\r\n    }\r\n}")]
+        public string DefaultViewModel {
             get {
-                return ((string)(this["StandartViewModelTemplate"]));
+                return ((string)(this["DefaultViewModel"]));
             }
             set {
-                this["StandartViewModelTemplate"] = value;
+                this["DefaultViewModel"] = value;
             }
         }
     }

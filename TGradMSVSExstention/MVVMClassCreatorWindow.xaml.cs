@@ -19,14 +19,22 @@ namespace TGradMSVSExtention
   
     public partial class MVVMClassCreatorWindow : Window
     {
+        class TypedComboBox
+        {
+            public MVVMClassType Type { set; get; }
+            public ComboBox ComBox { set; get; }
+        }
         public MVVMClassCreatorWindow()
         {
             InitializeComponent();
             CheckBox[] cbs = new CheckBox[] { ModelCB, ViewCB, ViewModelCB};
-            foreach (var cb in cbs)
+            ComboBox[] comboxes = new ComboBox[] { ModelComBox, ViewComBox, ViewModelComBox };
+            MVVMClassType[] types = new MVVMClassType[] { MVVMClassType.Model, MVVMClassType.View, MVVMClassType.ViewModel };
+            for (int i = 0; i < cbs.Length; ++i)
             {
-                cb.Checked += MVVMClassCheckBoxChecked;
-                cb.Unchecked += MVVMClassCheckBoxUnchecked;
+                cbs[i].Checked += MVVMClassCheckBoxChecked;
+                cbs[i].Unchecked += MVVMClassCheckBoxUnchecked;
+                cbs[i].Tag = new TypedComboBox() { Type = types[i],  ComBox = comboxes[i]};
             }
             FillComboBoxes();
         }
@@ -34,15 +42,13 @@ namespace TGradMSVSExtention
         private void MVVMClassCheckBoxChecked(object sender, RoutedEventArgs e)
         {
             var cb = sender as CheckBox;
-            var combox = this.FindName(cb.Content.ToString().Replace(" ", "") + "ComBox") as ComboBox;
-            combox.Visibility = Visibility.Visible;
+            (cb.Tag as TypedComboBox).ComBox.Visibility = Visibility.Visible;
         }
 
         private void MVVMClassCheckBoxUnchecked(object sender, RoutedEventArgs e)
         {
             var cb = sender as CheckBox;
-            var combox = this.FindName(cb.Content.ToString().Replace(" ", "") + "ComBox") as ComboBox;
-            combox.Visibility = Visibility.Hidden;
+            (cb.Tag as TypedComboBox).ComBox.Visibility = Visibility.Hidden;
         }
 
         private void AcceptBtnClick(object sender, RoutedEventArgs e)
@@ -54,6 +60,18 @@ namespace TGradMSVSExtention
                 this.Close();
                 return;
             }
+            List<string> templatesFileNames = new List<string>();
+            List<MVVMClassType> types = new List<MVVMClassType>();
+            CheckBox[] cbs = new CheckBox[] { ModelCB, ViewCB, ViewModelCB };
+            foreach (var cb in cbs)
+            {
+                if (cb.IsChecked.HasValue && cb.IsChecked.Value)
+                {
+                    templatesFileNames.Add(((cb.Tag as TypedComboBox).ComBox.SelectedItem as ComboBoxItem).Content.ToString());
+                    types.Add((cb.Tag as TypedComboBox).Type);
+                }
+            }
+            MVVMClassCreator.CreateClasses(types, className, templatesFileNames);
         }
 
         private void FillComboBoxes()

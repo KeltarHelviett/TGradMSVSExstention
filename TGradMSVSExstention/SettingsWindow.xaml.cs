@@ -56,7 +56,7 @@ namespace TGradMSVSExtention
                 TextBox tb = new TextBox() { Margin = margin, Width = 200, Height = 20, Text = Config.GetTemplateSource(name.Replace(" ", "")),
                     Name = name.Replace(" ", "") + "TB"
                 };
-                Button b = new Button() { Margin = margin, Content = "Brows...", Height = 20, Tag = tb };
+                Button b = new Button() { Margin = margin, Content = "Browse...", Height = 20, Tag = tb };
                 g.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(0, GridUnitType.Auto) });
                 rowCounter++;
                 b.Click += eh;
