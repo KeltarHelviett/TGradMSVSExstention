@@ -72,6 +72,7 @@ namespace TGradMSVSExtention
                 }
             }
             MVVMClassCreator.CreateClasses(types, className, templatesFileNames);
+            this.Close();
         }
 
         private void FillComboBoxes()

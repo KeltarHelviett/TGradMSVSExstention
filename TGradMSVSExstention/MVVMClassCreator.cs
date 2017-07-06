@@ -23,17 +23,13 @@ namespace TGradMSVSExtention
 
         static public void CreateClasses(List<MVVMClassType> types, string className, List<string> templateFileNames)
         {
-            Array tmp = (Array)dte.ActiveSolutionProjects;
-            var ps = tmp.Cast<Project>().ToArray();
+            var ps = ((Array)dte.ActiveSolutionProjects).Cast<Project>().ToArray();
             List<string> prefixes = FindPrefixes(types);
-            List<Project> projects;
-            List<MVVMClassType> projectTypes;
-            GetProjectsAndTypes(prefixes, types, out projects, out projectTypes);
-            for (int i = 0; i < projects.Count; ++i)
+            var typedProjects = GetTypedProjects(prefixes, types);
+            foreach (var project in typedProjects.Keys)
             {
-                CreateClass(projectTypes[i], className, templateFileNames[types.IndexOf(projectTypes[i])], projects[i]);
+                CreateClass(typedProjects[project], className, templateFileNames[types.IndexOf(typedProjects[project])], project);
             }
-
         }
 
         static private List<string> FindPrefixes(List<MVVMClassType> types)
@@ -43,46 +39,20 @@ namespace TGradMSVSExtention
             List<string> prefixes = new List<string>();
             foreach (var p in ps)
             {
-                string lcpname = p.Name.ToLower();
-                foreach (var t in types)
-                {
-                    string lctname = t.ToString().ToLower();
-                    if (lcpname.Contains(lctname))
-                    {
-                        if (lctname != "viewmodel")
-                        {
-                            if (!lcpname.Contains("viewmodel"))
-                            {
-                                string prefix = p.Name.Substring(0, lcpname.IndexOf(lctname));
-                                if (!prefixes.Contains(prefix))
-                                    prefixes.Add(prefix);
-                                break;
-                            }
-                        }
-                        else
-                        {
-                            string prefix = p.Name.Substring(0, lcpname.IndexOf(lctname));
-                            if (!prefixes.Contains(prefix))
-                                prefixes.Add(prefix);
-                            break;
-                        }
-                    }
-                }
+                string prefix = p.Name.Substring(0, p.Name.LastIndexOf("."));
+                if (prefix != null && prefix != "" && !prefixes.Contains(prefix))
+                    prefixes.Add(prefix);
             }
             return prefixes;
         }
         
-        static private void GetProjectsAndTypes(List<string> prefixes, List<MVVMClassType> types, out List<Project> projects,
-            out List<MVVMClassType> projectTypes)
+        static private Dictionary<Project, MVVMClassType> GetTypedProjects(List<string> prefixes, List<MVVMClassType> types)
         {
-            projects = new List<Project>();
-            projectTypes = new List<MVVMClassType>();
-            Projects allprojects = dte.Solution.Projects;
-            System.Collections.IEnumerator it;
-            it = allprojects.GetEnumerator();
+            var typedProjects = new Dictionary<Project, MVVMClassType>();
+            var it = dte.Solution.Projects.GetEnumerator();
             while (it.MoveNext())
             {
-                Project p = it.Current as Project;
+                var p = it.Current as Project;
                 foreach (var prefix in prefixes)
                 {
                     string lcpname = p.Name.ToLower();
@@ -97,15 +67,13 @@ namespace TGradMSVSExtention
                                 {
                                     if (!lcpname.Contains("viewmodel"))
                                     {
-                                        projects.Add(p);
-                                        projectTypes.Add(t);
+                                        typedProjects.Add(p, t);
                                         break;
                                     }
                                 }
                                 else
                                 {
-                                    projects.Add(p);
-                                    projectTypes.Add(t);
+                                    typedProjects.Add(p, t);
                                     break;
                                 }
                             }
@@ -113,6 +81,7 @@ namespace TGradMSVSExtention
                     }
                 }
             }
+            return typedProjects;
         }
 
         static private void CreateClass(MVVMClassType type, string className, string templateFileName, Project project)
@@ -125,13 +94,12 @@ namespace TGradMSVSExtention
             }
             else
             {
-                string folder = Settings.Default[typename + "Folder"].ToString() + "\\" + templateFileName;
                 cs = File.ReadAllText(Settings.Default[typename + "Folder"].ToString() + "\\" + templateFileName);
             }
-            cs = cs.Replace("%namespace%", project.Name + "." + className + "s");
+            cs = cs.Replace("%namespace%", $"{project.Name}.{className}s");
             cs = cs.Replace("%classname%", className);
             project.ProjectItems.AddFolder(className + "s");
-            string fileName = Path.GetDirectoryName(project.FullName) + "\\" + className + "s.cs";
+            string fileName = $@"{Path.GetDirectoryName(project.FullName)}\{className}s\{className}.cs";
             File.WriteAllText(fileName, cs);
             project.ProjectItems.AddFromFile(fileName);
         }
