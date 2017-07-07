@@ -21,7 +21,7 @@ namespace TGradMSVSExtention
     {
         class TypedComboBox
         {
-            public MVVMClassType Type { set; get; }
+            public ProjectType Type { set; get; }
             public ComboBox ComBox { set; get; }
         }
         public MVVMClassCreatorWindow()
@@ -29,7 +29,7 @@ namespace TGradMSVSExtention
             InitializeComponent();
             CheckBox[] cbs = new CheckBox[] { ModelCB, ViewCB, ViewModelCB};
             ComboBox[] comboxes = new ComboBox[] { ModelComBox, ViewComBox, ViewModelComBox };
-            MVVMClassType[] types = new MVVMClassType[] { MVVMClassType.Model, MVVMClassType.View, MVVMClassType.ViewModel };
+            ProjectType[] types = new ProjectType[] { ProjectType.Model, ProjectType.View, ProjectType.ViewModel };
             for (int i = 0; i < cbs.Length; ++i)
             {
                 cbs[i].Checked += MVVMClassCheckBoxChecked;
@@ -61,7 +61,7 @@ namespace TGradMSVSExtention
                 return;
             }
             List<string> templatesFileNames = new List<string>();
-            List<MVVMClassType> types = new List<MVVMClassType>();
+            List<ProjectType> types = new List<ProjectType>();
             CheckBox[] cbs = new CheckBox[] { ModelCB, ViewCB, ViewModelCB };
             foreach (var cb in cbs)
             {
@@ -71,7 +71,7 @@ namespace TGradMSVSExtention
                     types.Add((cb.Tag as TypedComboBox).Type);
                 }
             }
-            MVVMClassCreator.CreateClasses(types, className, templatesFileNames);
+            MVVMSolutionManager.FillActiveSolution(types, className, templatesFileNames);
             this.Close();
         }
 

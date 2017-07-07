@@ -16,7 +16,7 @@ using Microsoft.VisualStudio.Shell.Interop;
 namespace TGradMSVSExtention
 {
 
-    internal sealed class MVVMClassCreatorManager
+    internal sealed class MenuManager
     {
 
         public const int CreateClassesCmdId = 0x1023;
@@ -26,7 +26,7 @@ namespace TGradMSVSExtention
 
         private readonly Package package;
 
-        private MVVMClassCreatorManager(Package package)
+        private MenuManager(Package package)
         {
             if (package == null)
             {
@@ -47,10 +47,10 @@ namespace TGradMSVSExtention
             }
             Config.Load();
             DTE dte = (DTE)this.ServiceProvider.GetService(typeof(DTE));
-            MVVMClassCreator.InitializeDTE(dte);
+            MVVMSolutionManager.InitializeDTE(dte);
         }
 
-        public static MVVMClassCreatorManager Instance
+        public static MenuManager Instance
         {
             get;
             private set;
@@ -66,7 +66,7 @@ namespace TGradMSVSExtention
 
         public static void Initialize(Package package)
         {
-            Instance = new MVVMClassCreatorManager(package);
+            Instance = new MenuManager(package);
         }
 
         private void CreateClassesMenuItemCallback(object sender, EventArgs e)

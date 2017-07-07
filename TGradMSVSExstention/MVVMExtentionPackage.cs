@@ -38,9 +38,9 @@ namespace TGradMSVSExtention
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)] // Info on this package for Help/About
     [ProvideMenuResource("Menus.ctmenu", 1)]
-    [Guid(MVVMClassCreatorPackage.PackageGuidString)]
+    [Guid(MVVMExtentionPackage.PackageGuidString)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
-    public sealed class MVVMClassCreatorPackage : Package
+    public sealed class MVVMExtentionPackage : Package
     {
         /// <summary>
         /// MVVMClassCreatorPackage GUID string.
@@ -48,9 +48,9 @@ namespace TGradMSVSExtention
         public const string PackageGuidString = "6f1b177b-9895-4638-9b10-828ba89a556b";
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MVVMClassCreatorManager"/> class.
+        /// Initializes a new instance of the <see cref="MenuManager"/> class.
         /// </summary>
-        public MVVMClassCreatorPackage()
+        public MVVMExtentionPackage()
         {
             // Inside this method you can place any initialization code that does not require
             // any Visual Studio service because at this point the package object is created but
@@ -66,7 +66,7 @@ namespace TGradMSVSExtention
         /// </summary>
         protected override void Initialize()
         {
-            MVVMClassCreatorManager.Initialize(this);
+            MenuManager.Initialize(this);
             base.Initialize();
         }
 

@@ -34,9 +34,42 @@
     <Setting Name="DefaultViewModel" Type="System.String" Scope="User">
       <Value Profile="(Default)">namespace %namespace%
 {
-    public class %classname%
+    class %classname%sViewModel : ItemsViewModel&lt;%classname%, %classname%Filter&gt;
     {
+        public %classname%sViewModel() : this(CommonMainViewModel.Resolve&lt;I%classname%Repository&gt;())
+        {
+
+        }
+
+        public %classname%sViewModel(IRepository&lt;%classname%, %classname%Filter&gt; repository) : base(repository)
+        {
+
+        }
+
     }
+}</Value>
+    </Setting>
+    <Setting Name="DefaultDetailViewModel" Type="System.String" Scope="User">
+      <Value Profile="(Default)">namespace %namespace%
+{
+	public class %classname%DetailViewModel : WorkspaceViewModel
+	{
+
+		 public %classname%DetailViewModel()
+		 {
+
+		 }
+
+	}
+}</Value>
+    </Setting>
+    <Setting Name="DefaultMasterViewModel" Type="System.String" Scope="User">
+      <Value Profile="(Default)">namespace %namespace%
+{
+	public class %classname%sMasterViewModel : MasterDetailViewModel&lt;%classname%sViewModel, %classname%DetailViewModel&gt;
+	{
+	  
+	}
 }</Value>
     </Setting>
   </Settings>

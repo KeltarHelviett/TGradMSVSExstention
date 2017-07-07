@@ -86,13 +86,54 @@ namespace TGradMSVSExtention.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("namespace %namespace%\r\n{\r\n    public class %classname%\r\n    {\r\n    }\r\n}")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"namespace %namespace%
+{
+    class %classname%sViewModel : ItemsViewModel<%classname%, %classname%Filter>
+    {
+        public %classname%sViewModel() : this(CommonMainViewModel.Resolve<I%classname%Repository>())
+        {
+
+        }
+
+        public %classname%sViewModel(IRepository<%classname%, %classname%Filter> repository) : base(repository)
+        {
+
+        }
+
+    }
+}")]
         public string DefaultViewModel {
             get {
                 return ((string)(this["DefaultViewModel"]));
             }
             set {
                 this["DefaultViewModel"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("namespace %namespace%\r\n{\r\n\tpublic class %classname%DetailViewModel : WorkspaceVie" +
+            "wModel\r\n\t{\r\n\r\n\t\t public %classname%DetailViewModel()\r\n\t\t {\r\n\r\n\t\t }\r\n\r\n\t}\r\n}")]
+        public string DefaultDetailViewModel {
+            get {
+                return ((string)(this["DefaultDetailViewModel"]));
+            }
+            set {
+                this["DefaultDetailViewModel"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("namespace %namespace%\r\n{\r\n\tpublic class %classname%sMasterViewModel : MasterDetai" +
+            "lViewModel<%classname%sViewModel, %classname%DetailViewModel>\r\n\t{\r\n\t  \r\n\t}\r\n}")]
+        public string DefaultMasterViewModel {
+            get {
+                return ((string)(this["DefaultMasterViewModel"]));
+            }
+            set {
+                this["DefaultMasterViewModel"] = value;
             }
         }
     }
