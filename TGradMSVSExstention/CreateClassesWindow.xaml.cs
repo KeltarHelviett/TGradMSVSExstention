@@ -27,9 +27,9 @@ namespace TGradMSVSExtention
         public MVVMClassCreatorWindow()
         {
             InitializeComponent();
-            CheckBox[] cbs = new CheckBox[] { ModelCB, ViewCB, ViewModelCB};
-            ComboBox[] comboxes = new ComboBox[] { ModelComBox, ViewComBox, ViewModelComBox };
-            ProjectType[] types = new ProjectType[] { ProjectType.Model, ProjectType.View, ProjectType.ViewModel };
+            var cbs = new CheckBox[] { ModelCB, ViewCB, ViewModelCB, RepositoryCB, DatumNodeRepositoryCB};
+            var comboxes = new ComboBox[] { ModelComBox, ViewComBox, ViewModelComBox, RepositoryComBox, DatumNodeRepositoryComBox };
+            var types = new ProjectType[] { ProjectType.Model, ProjectType.View, ProjectType.ViewModel, ProjectType.Repository, ProjectType.DatumNodeRepository };
             for (int i = 0; i < cbs.Length; ++i)
             {
                 cbs[i].Checked += MVVMClassCheckBoxChecked;
@@ -63,7 +63,7 @@ namespace TGradMSVSExtention
             }
             List<string> templatesFileNames = new List<string>();
             List<ProjectType> types = new List<ProjectType>();
-            CheckBox[] cbs = new CheckBox[] { ModelCB, ViewCB, ViewModelCB };
+            CheckBox[] cbs = new CheckBox[] { ModelCB, ViewCB, ViewModelCB, RepositoryCB, DatumNodeRepositoryCB };
             foreach (var cb in cbs)
             {
                 if (cb.IsChecked.HasValue && cb.IsChecked.Value)
@@ -78,8 +78,8 @@ namespace TGradMSVSExtention
 
         private void FillComboBoxes()
         {
-            ComboBox[] cbs = new ComboBox[] { ModelComBox, ViewComBox, ViewModelComBox };
-            string[] names = new string[] { "Model", "View", "ViewModel" };
+            ComboBox[] cbs = new ComboBox[] { ModelComBox, ViewComBox, ViewModelComBox, RepositoryComBox, DatumNodeRepositoryComBox };
+            string[] names = new string[] { "Model", "View", "ViewModel", "Repository", "DatumNodeRepository" };
             var pairs = cbs.Zip(names, (cb, n) => new { CB = cb, Name = n });
             foreach (var pair in pairs)
             {

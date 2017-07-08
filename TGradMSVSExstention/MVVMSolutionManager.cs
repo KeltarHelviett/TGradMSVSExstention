@@ -14,7 +14,7 @@ namespace TGradMSVSExtention
 {
     enum ProjectType
     {
-        Model = 0, View = 1, ViewModel = 2
+        Model = 0, View = 1, ViewModel = 2, Repository, DatumNodeRepository
     }
 
     static class MVVMSolutionManager
@@ -70,7 +70,7 @@ namespace TGradMSVSExtention
                             {
                                 if (lctname != "viewmodel")
                                 {
-                                    if (!lcpname.Contains("viewmodel"))
+                                    if (!lcpname.Contains("viewmodel") && !lcpname.Contains("mockrepository"))
                                     {
                                         typedProjects.Add(p, t);
                                         break;
@@ -106,6 +106,12 @@ namespace TGradMSVSExtention
                 case ProjectType.ViewModel:
                     MVVMClassCreator.CreateViewModelClassSet(className, templateFileFullName, project);
                     break;
+                case ProjectType.Repository:
+                    MVVMClassCreator.CreateRepositoryClassSet(className, templateFileFullName, project);
+                    break;
+                case ProjectType.DatumNodeRepository:
+                    MVVMClassCreator.CreateDatumNodeRepositoryClassSet(className, templateFileFullName, project);
+                    break;
             }
         }
 
@@ -126,6 +132,16 @@ namespace TGradMSVSExtention
             static public void CreateModelClassSet(string className, string templateFileName, Project project)
             {
                 CreateClass("Model", className, templateFileName, className, project);
+            }
+            
+            static public void CreateRepositoryClassSet(string className, string templateFileName, Project project)
+            {
+                CreateClass("Repository", className, templateFileName, $"I{className}Repository", project);
+            }
+
+            static public void CreateDatumNodeRepositoryClassSet(string className, string templateFileName, Project project)
+            {
+                CreateClass("DatumNodeRepository", className, templateFileName, $"{className}Repository", project);
             }
 
             static private void CreateClass(string classType, string className, string templateFileFullName, string fileName, Project project)

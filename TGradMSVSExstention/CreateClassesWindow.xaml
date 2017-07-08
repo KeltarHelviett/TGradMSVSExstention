@@ -4,22 +4,26 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TGradMSVSExtention"
-             mc:Ignorable="d" d:DesignWidth="500" Height="290" MaxWidth="600" MaxHeight="800" Width="500">
-    <Grid Margin="0,0,-8,-5" Height="264" VerticalAlignment="Top" HorizontalAlignment="Left" Width="500">
+             mc:Ignorable="d" Height="300" MaxWidth="500" MaxHeight="300" Width="496" MinWidth="500" MinHeight="300" Title="Create Classes">
+    <Grid Margin="0,0,-18,-21" Height="280" VerticalAlignment="Top" HorizontalAlignment="Left" Width="500" MaxWidth="500" MinWidth="500">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="121*"/>
-            <ColumnDefinition Width="379*"/>
+            <ColumnDefinition Width="39*"/>
+            <ColumnDefinition Width="61*"/>
         </Grid.ColumnDefinitions>
         <TextBox x:Name="ClassNameTB" HorizontalAlignment="Left" Height="23" Margin="10,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1" RenderTransformOrigin="0.85,0.609"/>
-        <Button x:Name="AcceptBtn" Content="OK" HorizontalAlignment="Left" Margin="106,213,0,0" VerticalAlignment="Top" Width="75" Click="AcceptBtnClick" Grid.ColumnSpan="2" Height="20"/>
+        <Button x:Name="AcceptBtn" Content="OK" HorizontalAlignment="Left" Margin="29,234,0,0" VerticalAlignment="Top" Width="75" Click="AcceptBtnClick" Height="20" Grid.Column="1"/>
         <Label x:Name="label" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,101,0,0" Height="10" Width="10"/>
-        <Label x:Name="ClassNameLabel" Content="Class Name" RenderTransformOrigin="0.562,-0.208" Margin="19,22,10,219"></Label>
-        <CheckBox x:Name="ModelCB" Content="Model" HorizontalAlignment="Left" Margin="29,66,0,0" VerticalAlignment="Top" Height="15" Width="54"></CheckBox>
-        <CheckBox x:Name="ViewCB" Content="View" HorizontalAlignment="Left" Margin="29,96,0,0" VerticalAlignment="Top" Height="15" Width="45"/>
-        <CheckBox x:Name="ViewModelCB" Content="View Model" HorizontalAlignment="Left" Margin="29,126,0,0" VerticalAlignment="Top" Height="15" Width="83"/>
-        <ComboBox x:Name="ModelComBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" Width="120" Visibility="Visible" IsEnabled="False"/>
-        <ComboBox x:Name="ViewComBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10,96,0,0" VerticalAlignment="Top" Width="120" Visibility="Visible" IsEnabled="False"/>
-        <ComboBox x:Name="ViewModelComBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10,126,0,0" VerticalAlignment="Top" Width="120" Visibility="Visible" IsEnabled="False"/>
+        <Label x:Name="ClassNameLabel" Content="Class Name" RenderTransformOrigin="0.562,-0.208" Margin="29,22,0,219"></Label>
+        <CheckBox x:Name="ModelCB" Content="Model" HorizontalAlignment="Left" Margin="30,60,0,0" VerticalAlignment="Top" Height="15" Width="54"></CheckBox>
+        <CheckBox x:Name="ViewCB" Content="View" HorizontalAlignment="Left" Margin="30,90,0,0" VerticalAlignment="Top" Height="15" Width="45"/>
+        <CheckBox x:Name="ViewModelCB" Content="View Model" HorizontalAlignment="Left" Margin="30,120,0,0" VerticalAlignment="Top" Height="15" Width="83"/>
+        <ComboBox x:Name="ModelComBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Width="120" Visibility="Visible" IsEnabled="False" Height="22"/>
+        <ComboBox x:Name="ViewComBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" Width="120" Visibility="Visible" IsEnabled="False" Height="22"/>
+        <ComboBox x:Name="ViewModelComBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10,120,0,0" VerticalAlignment="Top" Width="120" Visibility="Visible" IsEnabled="False" Height="22"/>
+        <CheckBox x:Name="RepositoryCB" Content="Repository" HorizontalAlignment="Left" Margin="30,150,0,0" VerticalAlignment="Top" Height="15" Width="76"/>
+        <ComboBox x:Name="RepositoryComBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10,150,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False" Height="22"/>
+        <ComboBox x:Name="DatumNodeRepositoryComBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10,180,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False" Height="22"/>
+        <CheckBox x:Name="DatumNodeRepositoryCB" Content="Datum Node Repository" HorizontalAlignment="Left" Margin="30,180,0,0" VerticalAlignment="Top" Height="15" Width="156"/>
 
     </Grid>
 </Window>

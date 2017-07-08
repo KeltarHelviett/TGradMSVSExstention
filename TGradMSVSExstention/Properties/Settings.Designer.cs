@@ -136,5 +136,56 @@ namespace TGradMSVSExtention.Properties {
                 this["DefaultMasterViewModel"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DatumNodeRepositoryFolder {
+            get {
+                return ((string)(this["DatumNodeRepositoryFolder"]));
+            }
+            set {
+                this["DatumNodeRepositoryFolder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string RepositoryFolder {
+            get {
+                return ((string)(this["RepositoryFolder"]));
+            }
+            set {
+                this["RepositoryFolder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("namespace %namespace%\r\n{\r\n\tclass %classname%sViewModel : ItemsView%classname%<%cl" +
+            "assname%, %classname%Filter>\r\n\t{\r\n\t\t public %classname%sViewModel() : this(Commo" +
+            "nMainViewModel.Resolve<I%classname%Repository>())\r\n\t\t {\r\n\r\n\t\t }\r\n\t}\r\n}")]
+        public string DefaultDatumNodeRepository {
+            get {
+                return ((string)(this["DefaultDatumNodeRepository"]));
+            }
+            set {
+                this["DefaultDatumNodeRepository"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("namespace %namespace%\r\n{\r\n\tpublic interface I%classname%Repository: IRepository<%" +
+            "classname%, %classname%Filter>\r\n\t{\r\n\r\n\t}\r\n}")]
+        public string DefaultRepository {
+            get {
+                return ((string)(this["DefaultRepository"]));
+            }
+            set {
+                this["DefaultRepository"] = value;
+            }
+        }
     }
 }

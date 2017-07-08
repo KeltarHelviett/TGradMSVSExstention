@@ -72,5 +72,32 @@
 	}
 }</Value>
     </Setting>
+    <Setting Name="DatumNodeRepositoryFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="RepositoryFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DefaultDatumNodeRepository" Type="System.String" Scope="User">
+      <Value Profile="(Default)">namespace %namespace%
+{
+	class %classname%sViewModel : ItemsView%classname%&lt;%classname%, %classname%Filter&gt;
+	{
+		 public %classname%sViewModel() : this(CommonMainViewModel.Resolve&lt;I%classname%Repository&gt;())
+		 {
+
+		 }
+	}
+}</Value>
+    </Setting>
+    <Setting Name="DefaultRepository" Type="System.String" Scope="User">
+      <Value Profile="(Default)">namespace %namespace%
+{
+	public interface I%classname%Repository: IRepository&lt;%classname%, %classname%Filter&gt;
+	{
+
+	}
+}</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

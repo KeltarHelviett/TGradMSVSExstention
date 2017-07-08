@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TGradMSVSExtention"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="500" MaxWidth="800" MaxHeight="700" Width="600" Height="409">
+             d:DesignHeight="500" d:DesignWidth="500" MaxWidth="600" MaxHeight="410" Width="600" Height="410" MinWidth="600" MinHeight="415" Title="Settings">
     <Grid>
         <TreeView x:Name="treeView" Margin="10,30,0,10" FontSize="14" HorizontalAlignment="Left" Width="150">
             <TreeViewItem x:Name="GeneralTVI" Header="General" IsExpanded="True">
