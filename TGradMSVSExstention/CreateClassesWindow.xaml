@@ -17,9 +17,9 @@
         <CheckBox x:Name="ModelCB" Content="Model" HorizontalAlignment="Left" Margin="29,66,0,0" VerticalAlignment="Top" Height="15" Width="54"></CheckBox>
         <CheckBox x:Name="ViewCB" Content="View" HorizontalAlignment="Left" Margin="29,96,0,0" VerticalAlignment="Top" Height="15" Width="45"/>
         <CheckBox x:Name="ViewModelCB" Content="View Model" HorizontalAlignment="Left" Margin="29,126,0,0" VerticalAlignment="Top" Height="15" Width="83"/>
-        <ComboBox x:Name="ModelComBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
-        <ComboBox x:Name="ViewComBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10,96,0,0" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
-        <ComboBox x:Name="ViewModelComBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10,126,0,0" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
+        <ComboBox x:Name="ModelComBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" Width="120" Visibility="Visible" IsEnabled="False"/>
+        <ComboBox x:Name="ViewComBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10,96,0,0" VerticalAlignment="Top" Width="120" Visibility="Visible" IsEnabled="False"/>
+        <ComboBox x:Name="ViewModelComBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10,126,0,0" VerticalAlignment="Top" Width="120" Visibility="Visible" IsEnabled="False"/>
 
     </Grid>
 </Window>

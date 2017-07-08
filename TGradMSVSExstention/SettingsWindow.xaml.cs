@@ -51,7 +51,7 @@ namespace TGradMSVSExtention
             });
             foreach (string name in classNames)
             {
-                Label l = new Label() { Margin = margin, Content = name/*, Width = 50, Height = 20*/};
+                Label l = new Label() { Margin = margin, Content = name};
 
                 TextBox tb = new TextBox() { Margin = margin, Width = 200, Height = 20, Text = Config.GetTemplateSource(name.Replace(" ", "")),
                     Name = name.Replace(" ", "") + "TB"

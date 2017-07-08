@@ -8,6 +8,7 @@ using TGradMSVSExtention.Properties;
 using System.IO;
 using EnvDTE;
 using System.Windows;
+using Newtonsoft.Json.Linq;
 
 namespace TGradMSVSExtention
 {
@@ -43,7 +44,7 @@ namespace TGradMSVSExtention
             var prefixes = new List<string>();
             foreach (var p in ps)
             {
-                string prefix = p.Name.Substring(0, p.Name.LastIndexOf("."));
+                string prefix = p.Name.Substring(0, p.Name.LastIndexOf(".") + 1);
                 if (prefix != null && prefix != "" && !prefixes.Contains(prefix))
                     prefixes.Add(prefix);
             }
@@ -90,19 +91,20 @@ namespace TGradMSVSExtention
 
         static private void AddClassSet(ProjectType type, string className, string templateFileName, Project project)
         {
-            string tmp = $@"{Path.GetDirectoryName(project.FullName)}\{className}s";
             if (!Directory.Exists($@"{Path.GetDirectoryName(project.FullName)}\{className}s"))
                 project.ProjectItems.AddFolder(className + "s");
+            string templateFileFullName = templateFileName == "Default" ? "Default" : 
+                $@"{Settings.Default[type.ToString() + "Folder"].ToString()}\{templateFileName}";
             switch (type)
             {
                 case ProjectType.Model:
-                    MVVMClassCreator.CreateModelClassSet(className, templateFileName, project);
+                    MVVMClassCreator.CreateModelClassSet(className, templateFileFullName, project);
                     break;
                 case ProjectType.View:
-                    MVVMClassCreator.CreateViewClassSet(className, templateFileName, project);
+                    MVVMClassCreator.CreateViewClassSet(className, templateFileFullName, project);
                     break;
                 case ProjectType.ViewModel:
-                    MVVMClassCreator.CreateViewModelClassSet(className, templateFileName, project);
+                    MVVMClassCreator.CreateViewModelClassSet(className, templateFileFullName, project);
                     break;
             }
         }
@@ -126,11 +128,10 @@ namespace TGradMSVSExtention
                 CreateClass("Model", className, templateFileName, className, project);
             }
 
-            static private void CreateClass(string classType, string className, string templateFileName, string fileName, Project project)
+            static private void CreateClass(string classType, string className, string templateFileFullName, string fileName, Project project)
             {
-                string cs = "";
-                cs = templateFileName == "Default" ? Settings.Default["Default" + classType].ToString() :
-                    "";
+                string cs = templateFileFullName == "Default" ? Settings.Default["Default" + classType].ToString() :
+                    GetTemplateFromFile(templateFileFullName, classType);
                 cs = cs.Replace("%namespace%", $"{project.Name}.{className}s");
                 cs = cs.Replace("%classname%", className);
                 
@@ -144,6 +145,13 @@ namespace TGradMSVSExtention
                 }
                 File.WriteAllText(filePath, cs);
                 project.ProjectItems.AddFromFile(filePath);
+            }
+
+            static private string GetTemplateFromFile(string fileName, string classType)
+            {
+                string file = File.ReadAllText(fileName);
+                JObject jo = JObject.Parse(file);
+                return string.Join("\n", jo[classType].Select(t => (string)t).ToArray());
             }
         }
 

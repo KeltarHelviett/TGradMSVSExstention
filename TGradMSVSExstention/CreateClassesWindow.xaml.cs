@@ -42,13 +42,14 @@ namespace TGradMSVSExtention
         private void MVVMClassCheckBoxChecked(object sender, RoutedEventArgs e)
         {
             var cb = sender as CheckBox;
-            (cb.Tag as TypedComboBox).ComBox.Visibility = Visibility.Visible;
+            (cb.Tag as TypedComboBox).ComBox.IsEnabled = true;
+            
         }
 
         private void MVVMClassCheckBoxUnchecked(object sender, RoutedEventArgs e)
         {
             var cb = sender as CheckBox;
-            (cb.Tag as TypedComboBox).ComBox.Visibility = Visibility.Hidden;
+            (cb.Tag as TypedComboBox).ComBox.IsEnabled = false;
         }
 
         private void AcceptBtnClick(object sender, RoutedEventArgs e)
@@ -85,7 +86,7 @@ namespace TGradMSVSExtention
                 string folder = Config.GetTemplateSource(pair.Name);
                 if (folder != null && folder != "")
                 {
-                    var files = Directory.GetFiles(folder, "*.cs", SearchOption.TopDirectoryOnly).Select(System.IO.Path.GetFileName);
+                    var files = Directory.GetFiles(folder, "*.cst", SearchOption.TopDirectoryOnly).Select(System.IO.Path.GetFileName);
                     foreach (var file in files)
                     {
                         pair.CB.Items.Add(new ComboBoxItem() { Content = file });
