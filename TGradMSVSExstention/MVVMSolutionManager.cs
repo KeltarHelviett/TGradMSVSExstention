@@ -152,15 +152,17 @@ namespace TGradMSVSExtention
                 cs = cs.Replace("%classname%", className);
                 
                 string filePath = $@"{Path.GetDirectoryName(project.FullName)}\{className}s\{fileName}.cs";
+                MessageBoxResult res = MessageBoxResult.Yes;
                 if (File.Exists(filePath))
                 {
-                    //TODO
-                    // Add interaction with user that allows him to choose between 2 options:
-                    //  Overwrite file or not.
-                    //TODO
+                    res = MessageBox.Show($@"Would you like to overwrite existing file: {filePath}",
+                        "", MessageBoxButton.YesNo);
                 }
-                File.WriteAllText(filePath, cs);
-                project.ProjectItems.AddFromFile(filePath);
+                if (res == MessageBoxResult.Yes)
+                {
+                    File.WriteAllText(filePath, cs);
+                    project.ProjectItems.AddFromFile(filePath);
+                }
             }
 
             static private string GetTemplateFromFile(string fileName, string classType)
