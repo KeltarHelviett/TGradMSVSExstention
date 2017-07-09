@@ -60,27 +60,16 @@ namespace TGradMSVSExtention
                 var p = it.Current as Project;
                 foreach (var prefix in prefixes)
                 {
-                    string lcpname = p.Name.ToLower();
                     if (p.Name.StartsWith(prefix))
                     {
+                        string suffix = p.Name.ToLower().Substring(prefix.Length);
                         foreach (var t in types)
                         {
                             string lctname = t.ToString().ToLower();
-                            if (lcpname.Contains(lctname))
+                            if (suffix == lctname)
                             {
-                                if (lctname != "viewmodel")
-                                {
-                                    if (!lcpname.Contains("viewmodel") && !lcpname.Contains("mockrepository"))
-                                    {
-                                        typedProjects.Add(p, t);
-                                        break;
-                                    }
-                                }
-                                else
-                                {
-                                    typedProjects.Add(p, t);
-                                    break;
-                                }
+                                typedProjects.Add(p, t);
+                                break;
                             }
                         }
                     }
