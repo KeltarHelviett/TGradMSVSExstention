@@ -61,7 +61,9 @@ namespace TGradMSVSExtention.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("namespace %namespace%\r\n{\r\n    public class %classname%\r\n    {\r\n    }\r\n}")]
+        [global::System.Configuration.DefaultSettingValueAttribute("using System.Diagnostics;\r\n\r\nusing DatumNode.Models;\r\nusing System.ComponentModel" +
+            ".DataAnnotations;\r\n\r\nnamespace %namespace%\r\n{\r\n    public class %classname%: Ent" +
+            "ity\r\n    {\r\n    }\r\n}")]
         public string DefaultModel {
             get {
                 return ((string)(this["DefaultModel"]));
@@ -74,7 +76,7 @@ namespace TGradMSVSExtention.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("namespace %namespace%\r\n{\r\n    public class %classname%\r\n    {\r\n    \tpublic %class" +
-            "name%()\r\n    \t{\r\n    \t\tInitializeComponent();\r\n    \t}\r\n    }\r\n}")]
+            "name%()\r\n    \t{\r\n    \t\t//InitializeComponent();\r\n    \t}\r\n    }\r\n}")]
         public string DefaultView {
             get {
                 return ((string)(this["DefaultView"]));
@@ -86,7 +88,13 @@ namespace TGradMSVSExtention.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"namespace %namespace%
+        [global::System.Configuration.DefaultSettingValueAttribute(@"using DatumNode.ViewModels;
+
+using %prefix%ViewModels;
+using %prefix%Models.%classname%s;
+using %prefix%Repository.%classname%s;
+
+namespace %namespace%
 {
     class %classname%sViewModel : ItemsViewModel<%classname%, %classname%Filter>
     {
@@ -113,8 +121,23 @@ namespace TGradMSVSExtention.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("namespace %namespace%\r\n{\r\n\tpublic class %classname%DetailViewModel : WorkspaceVie" +
-            "wModel\r\n\t{\r\n\r\n\t\t public %classname%DetailViewModel()\r\n\t\t {\r\n\r\n\t\t }\r\n\r\n\t}\r\n}")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"using DatumNode.ViewModels;
+
+using %prefix%Models.%classname%s;
+using %prefix%Repository.%classname%s;
+
+namespace %namespace%
+{
+	public class %classname%DetailViewModel : WorkspaceViewModel
+	{
+
+		 public %classname%DetailViewModel()
+		 {
+
+		 }
+
+	}
+}")]
         public string DefaultDetailViewModel {
             get {
                 return ((string)(this["DefaultDetailViewModel"]));
@@ -126,8 +149,18 @@ namespace TGradMSVSExtention.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("namespace %namespace%\r\n{\r\n\tpublic class %classname%sMasterViewModel : MasterDetai" +
-            "lViewModel<%classname%sViewModel, %classname%DetailViewModel>\r\n\t{\r\n\t  \r\n\t}\r\n}")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"using DatumNode.ViewModels;
+
+using %prefix%Models.%classname%s;
+using %prefix%Repository.%classname%s;
+
+namespace %namespace%
+{
+	class %classname%sMasterViewModel : MasterDetailViewModel<%classname%sViewModel, %classname%DetailViewModel>
+	{
+	  
+	}
+}")]
         public string DefaultMasterViewModel {
             get {
                 return ((string)(this["DefaultMasterViewModel"]));
@@ -163,9 +196,24 @@ namespace TGradMSVSExtention.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("namespace %namespace%\r\n{\r\n\tclass %classname%sViewModel : ItemsView%classname%<%cl" +
-            "assname%, %classname%Filter>\r\n\t{\r\n\t\t public %classname%sViewModel() : this(Commo" +
-            "nMainViewModel.Resolve<I%classname%Repository>())\r\n\t\t {\r\n\r\n\t\t }\r\n\t}\r\n}")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"using System;
+using System.Collections.Generic;
+
+using DatumNode.ViewModels;
+
+using %prefix%Models.%classname%s;
+using %prefix%Repository.%classname%s;
+
+namespace %namespace%
+{
+	class %classname%sViewModel : ItemsView%classname%<%classname%, %classname%Filter>
+	{
+		 public %classname%sViewModel() : this(CommonMainViewModel.Resolve<I%classname%Repository>())
+		 {
+
+		 }
+	}
+}")]
         public string DefaultDatumNodeRepository {
             get {
                 return ((string)(this["DefaultDatumNodeRepository"]));
@@ -177,14 +225,29 @@ namespace TGradMSVSExtention.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("namespace %namespace%\r\n{\r\n\tpublic interface I%classname%Repository: IRepository<%" +
-            "classname%, %classname%Filter>\r\n\t{\r\n\r\n\t}\r\n}")]
+        [global::System.Configuration.DefaultSettingValueAttribute("using DatumNode.ViewModels;\r\n\r\nusing %prefix%Models.%classname%s;\r\n\r\nnamespace %n" +
+            "amespace%\r\n{\r\n\tpublic interface I%classname%Repository: IRepository<%classname%," +
+            " %classname%Filter>\r\n\t{\r\n\r\n\t}\r\n}")]
         public string DefaultRepository {
             get {
                 return ((string)(this["DefaultRepository"]));
             }
             set {
                 this["DefaultRepository"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("using System.Diagnostics;\r\n\r\nusing DatumNode.Models;\r\nusing System.ComponentModel" +
+            ".DataAnnotations;\r\n\r\nnamespace %namespace%\r\n{\r\n    public class %classname%Filte" +
+            "r: Entity\r\n    {\r\n    }\r\n}")]
+        public string DefaultModelFilter {
+            get {
+                return ((string)(this["DefaultModelFilter"]));
+            }
+            set {
+                this["DefaultModelFilter"] = value;
             }
         }
     }

@@ -66,7 +66,7 @@ namespace TGradMSVSExtention
                         foreach (var t in types)
                         {
                             string lctname = t.ToString().ToLower();
-                            if (suffix == lctname)
+                            if (suffix == lctname || suffix == lctname + "s")
                             {
                                 typedProjects.Add(p, t);
                                 break;
@@ -109,8 +109,8 @@ namespace TGradMSVSExtention
             static public void CreateViewModelClassSet(string className, string templateFileName, Project project)
             {
                 CreateClass("ViewModel", className, templateFileName, className, project);
-                CreateClass("DetailViewModel", className, templateFileName, className + "Detail", project);
-                CreateClass("MasterViewModel", className, templateFileName, className + "Master", project);
+                CreateClass("DetailViewModel", className, templateFileName, $"{className}DetailViewModel", project);
+                CreateClass("MasterViewModel", className, templateFileName, $"{className}sMasterViewModel", project);
             }
 
             static public void CreateViewClassSet(string className, string templateFileName, Project project)
@@ -121,6 +121,7 @@ namespace TGradMSVSExtention
             static public void CreateModelClassSet(string className, string templateFileName, Project project)
             {
                 CreateClass("Model", className, templateFileName, className, project);
+                CreateClass("ModelFilter", className, templateFileName, className + "Filter", project);
             }
             
             static public void CreateRepositoryClassSet(string className, string templateFileName, Project project)
@@ -137,8 +138,10 @@ namespace TGradMSVSExtention
             {
                 string cs = templateFileFullName == "Default" ? Settings.Default["Default" + classType].ToString() :
                     GetTemplateFromFile(templateFileFullName, classType);
+                string prefix = project.Name.Substring(0, project.Name.LastIndexOf(".") + 1);
                 cs = cs.Replace("%namespace%", $"{project.Name}.{className}s");
                 cs = cs.Replace("%classname%", className);
+                cs = cs.Replace("%prefix%", prefix);
                 
                 string filePath = $@"{Path.GetDirectoryName(project.FullName)}\{className}s\{fileName}.cs";
                 MessageBoxResult res = MessageBoxResult.Yes;

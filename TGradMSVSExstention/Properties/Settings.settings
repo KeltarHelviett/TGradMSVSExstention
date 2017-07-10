@@ -12,9 +12,14 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="DefaultModel" Type="System.String" Scope="User">
-      <Value Profile="(Default)">namespace %namespace%
+      <Value Profile="(Default)">using System.Diagnostics;
+
+using DatumNode.Models;
+using System.ComponentModel.DataAnnotations;
+
+namespace %namespace%
 {
-    public class %classname%
+    public class %classname%: Entity
     {
     }
 }</Value>
@@ -26,13 +31,19 @@
     {
     	public %classname%()
     	{
-    		InitializeComponent();
+    		//InitializeComponent();
     	}
     }
 }</Value>
     </Setting>
     <Setting Name="DefaultViewModel" Type="System.String" Scope="User">
-      <Value Profile="(Default)">namespace %namespace%
+      <Value Profile="(Default)">using DatumNode.ViewModels;
+
+using %prefix%ViewModels;
+using %prefix%Models.%classname%s;
+using %prefix%Repository.%classname%s;
+
+namespace %namespace%
 {
     class %classname%sViewModel : ItemsViewModel&lt;%classname%, %classname%Filter&gt;
     {
@@ -50,7 +61,12 @@
 }</Value>
     </Setting>
     <Setting Name="DefaultDetailViewModel" Type="System.String" Scope="User">
-      <Value Profile="(Default)">namespace %namespace%
+      <Value Profile="(Default)">using DatumNode.ViewModels;
+
+using %prefix%Models.%classname%s;
+using %prefix%Repository.%classname%s;
+
+namespace %namespace%
 {
 	public class %classname%DetailViewModel : WorkspaceViewModel
 	{
@@ -64,9 +80,14 @@
 }</Value>
     </Setting>
     <Setting Name="DefaultMasterViewModel" Type="System.String" Scope="User">
-      <Value Profile="(Default)">namespace %namespace%
+      <Value Profile="(Default)">using DatumNode.ViewModels;
+
+using %prefix%Models.%classname%s;
+using %prefix%Repository.%classname%s;
+
+namespace %namespace%
 {
-	public class %classname%sMasterViewModel : MasterDetailViewModel&lt;%classname%sViewModel, %classname%DetailViewModel&gt;
+	class %classname%sMasterViewModel : MasterDetailViewModel&lt;%classname%sViewModel, %classname%DetailViewModel&gt;
 	{
 	  
 	}
@@ -79,7 +100,15 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="DefaultDatumNodeRepository" Type="System.String" Scope="User">
-      <Value Profile="(Default)">namespace %namespace%
+      <Value Profile="(Default)">using System;
+using System.Collections.Generic;
+
+using DatumNode.ViewModels;
+
+using %prefix%Models.%classname%s;
+using %prefix%Repository.%classname%s;
+
+namespace %namespace%
 {
 	class %classname%sViewModel : ItemsView%classname%&lt;%classname%, %classname%Filter&gt;
 	{
@@ -91,12 +120,29 @@
 }</Value>
     </Setting>
     <Setting Name="DefaultRepository" Type="System.String" Scope="User">
-      <Value Profile="(Default)">namespace %namespace%
+      <Value Profile="(Default)">using DatumNode.ViewModels;
+
+using %prefix%Models.%classname%s;
+
+namespace %namespace%
 {
 	public interface I%classname%Repository: IRepository&lt;%classname%, %classname%Filter&gt;
 	{
 
 	}
+}</Value>
+    </Setting>
+    <Setting Name="DefaultModelFilter" Type="System.String" Scope="User">
+      <Value Profile="(Default)">using System.Diagnostics;
+
+using DatumNode.Models;
+using System.ComponentModel.DataAnnotations;
+
+namespace %namespace%
+{
+    public class %classname%Filter: Entity
+    {
+    }
 }</Value>
     </Setting>
   </Settings>
