@@ -75,8 +75,8 @@ namespace TGradMSVSExtention.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("namespace %namespace%\r\n{\r\n    public class %classname%\r\n    {\r\n    \tpublic %class" +
-            "name%()\r\n    \t{\r\n    \t\t//InitializeComponent();\r\n    \t}\r\n    }\r\n}")]
+        [global::System.Configuration.DefaultSettingValueAttribute("namespace %namespace%\r\n{\r\n    public partial class %classname%View\r\n    {\r\n    \tp" +
+            "ublic %classname%View()\r\n    \t{\r\n    \t\tInitializeComponent();\r\n    \t}\r\n    }\r\n}")]
         public string DefaultView {
             get {
                 return ((string)(this["DefaultView"]));
@@ -93,6 +93,7 @@ namespace TGradMSVSExtention.Properties {
 using %prefix%ViewModels;
 using %prefix%Models.%classname%s;
 using %prefix%Repository.%classname%s;
+using Oss.ViewModels;
 
 namespace %namespace%
 {
@@ -196,24 +197,10 @@ namespace %namespace%
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"using System;
-using System.Collections.Generic;
-
-using DatumNode.ViewModels;
-
-using %prefix%Models.%classname%s;
-using %prefix%Repository.%classname%s;
-
-namespace %namespace%
-{
-	class %classname%sViewModel : ItemsView%classname%<%classname%, %classname%Filter>
-	{
-		 public %classname%sViewModel() : this(CommonMainViewModel.Resolve<I%classname%Repository>())
-		 {
-
-		 }
-	}
-}")]
+        [global::System.Configuration.DefaultSettingValueAttribute("using DatumNode.ViewModels;\r\n\r\nusing %prefix%Models.%classname%s;\r\nusing %prefix%" +
+            "Repository.%classname%s;\r\n\r\nnamespace %namespace%\r\n{\r\n\tclass %classname%Reposito" +
+            "ry : Repository <%classname%, %classname%Filter>, I%classname%Repository\r\n\t{\r\n\t}" +
+            "\t\r\n}")]
         public string DefaultDatumNodeRepository {
             get {
                 return ((string)(this["DefaultDatumNodeRepository"]));
@@ -248,6 +235,130 @@ namespace %namespace%
             }
             set {
                 this["DefaultModelFilter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<views:UserView x:Class=\"%namespace%.%classname%View\"\r\n    xmlns=\"http://schemas." +
+            "microsoft.com/winfx/2006/xaml/presentation\"\r\n    xmlns:x=\"http://schemas.microso" +
+            "ft.com/winfx/2006/xaml\"\r\n    xmlns:d=\"http://schemas.microsoft.com/expression/bl" +
+            "end/2008\"\r\n    xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/" +
+            "2006\" \r\n    xmlns:views=\"clr-namespace:DatumNode.Views;assembly=DatumNode.Contro" +
+            "ls\" \r\n    xmlns:controls=\"clr-namespace:System.Windows.Controls;assembly=DatumNo" +
+            "de.Controls\" \r\n    xmlns:controls1=\"clr-namespace:Oss.Controls\" \r\n    xmlns:wind" +
+            "ows=\"clr-namespace:System.Windows;assembly=DatumNode.Controls\" \r\n    mc:Ignorabl" +
+            "e=\"d\"\r\n    d:DesignHeight=\"300\" d:DesignWidth=\"600\">\r\n    <Grid x:Name=\"LayoutRo" +
+            "ot\" Background=\"White\">\r\n        <Grid.RowDefinitions>\r\n            <RowDefiniti" +
+            "on Height=\"auto\"/>\r\n            <RowDefinition/>\r\n        </Grid.RowDefinitions>" +
+            "\r\n        <StackPanel Orientation=\"Horizontal\">\r\n            <TextBlock Margin=\"" +
+            "3\" VerticalAlignment=\"Center\" Text=\"Фильтр\"/>\r\n            <TextBox Width=\"100\" " +
+            "Margin=\"0,3,3,3\" Text=\"{Binding Path=FilterText, Mode=TwoWay}\" windows:BindingHe" +
+            "lper.UpdateSourceOnChange=\"True\"/>\r\n            <controls:CustomDatePicker Margi" +
+            "n=\"3\" SelectedDate=\"{Binding Path=Filter.Date, Mode=TwoWay}\" windows:BindingHelp" +
+            "er.UpdateSourceOnChange=\"True\"/>\r\n            <CheckBox Margin=\"3\" VerticalAlign" +
+            "ment=\"Center\" IsChecked=\"{Binding Path=Filter.IsClosed, Mode=TwoWay}\" Content=\"З" +
+            "акрытые\" windows:BindingHelper.UpdateSourceOnChange=\"True\"/>\r\n            <contr" +
+            "ols1:Toolbar ShowDeleteDialog=\"True\"/>\r\n        </StackPanel>\r\n        <controls" +
+            ":CustomDataGrid Grid.Row=\"1\" IsReadOnly=\"True\" MaxColumnAutoWidth=\"9999\" AutoGen" +
+            "erateColumns=\"True\" ItemsSource=\"{Binding Path=ItemsView}\" SelectedItem=\"{Bindin" +
+            "g Path=CurrentItem, Mode=TwoWay}\" SelectionMode=\"Single\"/>\r\n    </Grid>\r\n</views" +
+            ":UserView>")]
+        public string DefaultViewXaml {
+            get {
+                return ((string)(this["DefaultViewXaml"]));
+            }
+            set {
+                this["DefaultViewXaml"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<views:UserView x:Class=""%namespace%.%classname%DetailView""
+    xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation""
+    xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml""
+    xmlns:d=""http://schemas.microsoft.com/expression/blend/2008""
+    xmlns:mc=""http://schemas.openxmlformats.org/markup-compatibility/2006""
+    xmlns:views=""clr-namespace:DatumNode.Views;assembly=DatumNode.Controls""
+    xmlns:controls=""clr-namespace:DatumNode.Controls;assembly=DatumNode.Controls""
+    xmlns:sdk=""http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk""
+    mc:Ignorable=""d""
+    d:DesignHeight=""300"" d:DesignWidth=""400"">
+    <controls:CustomTabControl >
+        <sdk:TabItem Header=""{Binding Path=Title}"">
+            <views:DataContentPresenter Content=""{Binding Path=ViewModel}"" Refresh=""True"" CanUnload=""True""/>
+        </sdk:TabItem>
+    </controls:CustomTabControl>
+</views:UserView>")]
+        public string DefaultDetailViewXaml {
+            get {
+                return ((string)(this["DefaultDetailViewXaml"]));
+            }
+            set {
+                this["DefaultDetailViewXaml"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<views:UserView x:Class=\"%namespace%.%classname%MasterView\"\r\n    xmlns=\"http://sc" +
+            "hemas.microsoft.com/winfx/2006/xaml/presentation\"\r\n    xmlns:x=\"http://schemas.m" +
+            "icrosoft.com/winfx/2006/xaml\"\r\n    xmlns:d=\"http://schemas.microsoft.com/express" +
+            "ion/blend/2008\"\r\n    xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatib" +
+            "ility/2006\"\r\n    xmlns:views=\"clr-namespace:DatumNode.Views;assembly=DatumNode.C" +
+            "ontrols\"\r\n    xmlns:sdk=\"http://schemas.microsoft.com/winfx/2006/xaml/presentati" +
+            "on/sdk\"\r\n    xmlns:controls=\"clr-namespace:Oss.Controls\"\r\n    mc:Ignorable=\"d\"\r\n" +
+            "    d:DesignHeight=\"300\" d:DesignWidth=\"745\">\r\n    <Grid x:Name=\"LayoutRoot\">\r\n " +
+            "       <Grid.ColumnDefinitions>\r\n            <ColumnDefinition Width=\"1*\"/>\r\n   " +
+            "         <ColumnDefinition Width=\"auto\"/>\r\n            <ColumnDefinition Width=\"" +
+            "2*\"/>\r\n        </Grid.ColumnDefinitions>\r\n        <views:DataContentPresenter x:" +
+            "Name=\"Master\" Content=\"{Binding Path=MasterViewModel}\"/>\r\n        <sdk:GridSplit" +
+            "ter Grid.Column=\"1\" VerticalAlignment=\"Stretch\" HorizontalAlignment=\"Center\" Vis" +
+            "ibility=\"{Binding ElementName=CheckBox, Path=IsChecked, Converter={StaticResourc" +
+            "e BooleanToVisibilityConverter}}\" />\r\n        <Grid Grid.Row=\"0\" Grid.Column=\"2\"" +
+            ">\r\n            <Grid.RowDefinitions>\r\n                <RowDefinition Height=\"Aut" +
+            "o\"/>\r\n                <RowDefinition/>\r\n            </Grid.RowDefinitions>\r\n    " +
+            "        <controls:CustomCheckBox Grid.Row=\"0\" Grid.Column=\"0\" Target=\"{Binding E" +
+            "lementName=Master}\" x:Name=\"CheckBox\" Content=\"{Binding Path=MasterViewModel.Cur" +
+            "rentItem}\" IsChecked=\"True\" Visibility=\"{Binding Path=CurrentItem, Converter={St" +
+            "aticResource NullToVisibilityConverter}}\"/>\r\n            <views:DataContentPrese" +
+            "nter Grid.Row=\"1\" Grid.Column=\"0\" x:Name=\"Detail\" Content=\"{Binding Path=DetailV" +
+            "iewModel}\"/>\r\n        </Grid>\r\n    </Grid>\r\n</views:UserView>  ")]
+        public string DefaultMasterViewXaml {
+            get {
+                return ((string)(this["DefaultMasterViewXaml"]));
+            }
+            set {
+                this["DefaultMasterViewXaml"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("namespace %namespace%\r\n{\r\n    public partial class %classname%MasterView\r\n    {\r\n" +
+            "    \tpublic %classname%MasterView()\r\n    \t{\r\n    \t\tInitializeComponent();\r\n    \t" +
+            "}\r\n    }\r\n}")]
+        public string DefaultMasterView {
+            get {
+                return ((string)(this["DefaultMasterView"]));
+            }
+            set {
+                this["DefaultMasterView"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("namespace %namespace%\r\n{\r\n    public partial class %classname%DetailView\r\n    {\r\n" +
+            "    \tpublic %classname%DetailView()\r\n    \t{\r\n    \t\tInitializeComponent();\r\n    \t" +
+            "}\r\n    }\r\n}")]
+        public string DefaultDetailView {
+            get {
+                return ((string)(this["DefaultDetailView"]));
+            }
+            set {
+                this["DefaultDetailView"] = value;
             }
         }
     }

@@ -80,7 +80,8 @@ namespace TGradMSVSExtention
 
         static private void AddClassSet(ProjectType type, string className, string templateFileName, Project project)
         {
-            if (!Directory.Exists($@"{Path.GetDirectoryName(project.FullName)}\{className}s"))
+            string dirname = $@"{Path.GetDirectoryName(project.FullName)}\{className}s";
+            if (!Directory.Exists(dirname))
                 project.ProjectItems.AddFolder(className + "s");
             string templateFileFullName = templateFileName == "Default" ? "Default" : 
                 $@"{Settings.Default[type.ToString() + "Folder"].ToString()}\{templateFileName}";
@@ -108,30 +109,35 @@ namespace TGradMSVSExtention
         {
             static public void CreateViewModelClassSet(string className, string templateFileName, Project project)
             {
-                CreateClass("ViewModel", className, templateFileName, className, project);
-                CreateClass("DetailViewModel", className, templateFileName, $"{className}DetailViewModel", project);
-                CreateClass("MasterViewModel", className, templateFileName, $"{className}sMasterViewModel", project);
+                CreateClass("ViewModel", className, templateFileName, $"{className}.cs", project);
+                CreateClass("DetailViewModel", className, templateFileName, $"{className}DetailViewModel.cs", project);
+                CreateClass("MasterViewModel", className, templateFileName, $"{className}sMasterViewModel.cs", project);
             }
 
             static public void CreateViewClassSet(string className, string templateFileName, Project project)
             {
-                CreateClass("View", className, templateFileName, className, project);
+                CreateClass("View", className, templateFileName, $"{className}.xaml.cs", project);
+                CreateClass("ViewXaml", className, templateFileName, $"{className}.xaml", project);
+                CreateClass("DetailView", className, templateFileName, $"{className}Detail.xaml.cs", project);
+                CreateClass("DetailViewXaml", className, templateFileName, $"{className}Detail.xaml", project);
+                CreateClass("MasterView", className, templateFileName, $"{className}Master.xaml.cs", project);
+                CreateClass("MasterViewXaml", className, templateFileName, $"{className}Master.xaml", project);
             }
 
             static public void CreateModelClassSet(string className, string templateFileName, Project project)
             {
-                CreateClass("Model", className, templateFileName, className, project);
-                CreateClass("ModelFilter", className, templateFileName, className + "Filter", project);
+                CreateClass("Model", className, templateFileName, $"{className}.cs", project);
+                CreateClass("ModelFilter", className, templateFileName, $"{className}Filter.cs", project);
             }
             
             static public void CreateRepositoryClassSet(string className, string templateFileName, Project project)
             {
-                CreateClass("Repository", className, templateFileName, $"I{className}Repository", project);
+                CreateClass("Repository", className, templateFileName, $"I{className}Repository.cs", project);
             }
 
             static public void CreateDatumNodeRepositoryClassSet(string className, string templateFileName, Project project)
             {
-                CreateClass("DatumNodeRepository", className, templateFileName, $"{className}Repository", project);
+                CreateClass("DatumNodeRepository", className, templateFileName, $"{className}Repository.cs", project);
             }
 
             static private void CreateClass(string classType, string className, string templateFileFullName, string fileName, Project project)
@@ -143,7 +149,7 @@ namespace TGradMSVSExtention
                 cs = cs.Replace("%classname%", className);
                 cs = cs.Replace("%prefix%", prefix);
                 
-                string filePath = $@"{Path.GetDirectoryName(project.FullName)}\{className}s\{fileName}.cs";
+                string filePath = $@"{Path.GetDirectoryName(project.FullName)}\{className}s\{fileName}";
                 MessageBoxResult res = MessageBoxResult.Yes;
                 if (File.Exists(filePath))
                 {
