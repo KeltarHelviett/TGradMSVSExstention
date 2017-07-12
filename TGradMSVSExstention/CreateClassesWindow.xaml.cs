@@ -24,6 +24,7 @@ namespace TGradMSVSExtention
             public ProjectType Type { set; get; }
             public ComboBox ComBox { set; get; }
         }
+
         public MVVMClassCreatorWindow()
         {
             InitializeComponent();
@@ -83,7 +84,7 @@ namespace TGradMSVSExtention
             var pairs = cbs.Zip(names, (cb, n) => new { CB = cb, Name = n });
             foreach (var pair in pairs)
             {
-                string folder = Config.GetTemplateSource(pair.Name);
+                string folder = SettingsViewModel.TemplateSrcSettings.GetTemplateSource(pair.Name);
                 if (folder != null && folder != "")
                 {
                     var files = Directory.GetFiles(folder, "*.cst", SearchOption.TopDirectoryOnly).Select(System.IO.Path.GetFileName);

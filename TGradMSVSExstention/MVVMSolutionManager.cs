@@ -12,11 +12,7 @@ using Newtonsoft.Json.Linq;
 
 namespace TGradMSVSExtention
 {
-    enum ProjectType
-    {
-        Model = 0, View = 1, ViewModel = 2, Repository, DatumNodeRepository
-    }
-
+    
     static class MVVMSolutionManager
     {
 
@@ -84,7 +80,7 @@ namespace TGradMSVSExtention
             if (!Directory.Exists(dirname))
                 project.ProjectItems.AddFolder(className + "s");
             string templateFileFullName = templateFileName == "Default" ? "Default" : 
-                $@"{Settings.Default[type.ToString() + "Folder"].ToString()}\{templateFileName}";
+                $@"{SettingsModel.Default[type.ToString() + "Folder"].ToString()}\{templateFileName}";
             switch (type)
             {
                 case ProjectType.Model:
@@ -142,7 +138,7 @@ namespace TGradMSVSExtention
 
             static private void CreateClass(string classType, string className, string templateFileFullName, string fileName, Project project)
             {
-                string cs = templateFileFullName == "Default" ? Settings.Default["Default" + classType].ToString() :
+                string cs = templateFileFullName == "Default" ? SettingsModel.Default["Default" + classType].ToString() :
                     GetTemplateFromFile(templateFileFullName, classType);
                 string prefix = project.Name.Substring(0, project.Name.LastIndexOf(".") + 1);
                 cs = cs.Replace("%namespace%", $"{project.Name}.{className}s");

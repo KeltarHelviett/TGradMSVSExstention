@@ -45,7 +45,7 @@ namespace TGradMSVSExtention
                 commandService.AddCommand(createClasses);
                 commandService.AddCommand(settings);
             }
-            Config.Load();
+            SettingsViewModel.Load();
             DTE dte = (DTE)this.ServiceProvider.GetService(typeof(DTE));
             MVVMSolutionManager.InitializeDTE(dte);
         }
@@ -76,7 +76,7 @@ namespace TGradMSVSExtention
         
         private void SettingsMenuItemCallback(object sender, EventArgs e)
         {
-            new SettingsWindow().Show(); 
+            new SettingsView().Show(); 
         }
     }
 }
