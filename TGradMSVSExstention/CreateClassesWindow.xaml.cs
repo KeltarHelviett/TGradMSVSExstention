@@ -29,7 +29,7 @@ namespace TGradMSVSExtention
         {
             InitializeComponent();
             var cbs = new CheckBox[] { ModelCB, ViewCB, ViewModelCB, RepositoryCB, DatumNodeRepositoryCB};
-            var comboxes = new ComboBox[] { ModelComBox, ViewComBox, ViewModelComBox, RepositoryComBox, DatumNodeRepositoryComBox };
+            var comboxes = new ComboBox[] { ModelComBox, ViewComBox, ViewModelComBox, RepositoryComBox, DNRepositoryComBox };
             var types = new ProjectType[] { ProjectType.Model, ProjectType.View, ProjectType.ViewModel, ProjectType.Repository, ProjectType.DatumNodeRepository };
             for (int i = 0; i < cbs.Length; ++i)
             {
@@ -79,7 +79,7 @@ namespace TGradMSVSExtention
 
         private void FillComboBoxes()
         {
-            ComboBox[] cbs = new ComboBox[] { ModelComBox, ViewComBox, ViewModelComBox, RepositoryComBox, DatumNodeRepositoryComBox };
+            ComboBox[] cbs = new ComboBox[] { ModelComBox, ViewComBox, ViewModelComBox, RepositoryComBox, DNRepositoryComBox };
             string[] names = new string[] { "Model", "View", "ViewModel", "Repository", "DatumNodeRepository" };
             var pairs = cbs.Zip(names, (cb, n) => new { CB = cb, Name = n });
             foreach (var pair in pairs)
@@ -95,6 +95,17 @@ namespace TGradMSVSExtention
                 }
                 pair.CB.Items.Add(new ComboBoxItem() { Content = "Default" });
                 pair.CB.SelectedIndex = 0;
+            }
+        }
+
+        private void AllCheckBoxChecked(object sender, RoutedEventArgs e)
+        {
+            var cbs = CreateClassesGrid.Children.OfType<CheckBox>().ToArray();
+            var self = sender as CheckBox;
+            foreach (var cb in cbs)
+            {
+                if (cb != self)
+                    cb.IsChecked = true;
             }
         }
     }
