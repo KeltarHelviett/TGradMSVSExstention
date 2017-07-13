@@ -21,7 +21,7 @@ namespace TGradMSVSExtention
         private void GeneralTemplatesTVISelected(object sender, RoutedEventArgs e)
         {
             SettingsPanel.Children.Clear();
-            GeneralTemplatePanel gtp = new GeneralTemplatePanel() { };
+            GeneralTemplatePanel gtp = new GeneralTemplatePanel(SettingsPanel.Width, SettingsPanel.Height) { };
             SettingsPanel.Children.Add(gtp);
             var OKBtnClick = OKBtn.Tag as RoutedEventHandler;
             if (OKBtnClick != null)

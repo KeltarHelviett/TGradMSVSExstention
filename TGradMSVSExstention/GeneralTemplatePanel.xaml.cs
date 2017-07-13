@@ -20,9 +20,12 @@ namespace TGradMSVSExtention
     /// </summary>
     public partial class GeneralTemplatePanel : UserControl
     {
-        public GeneralTemplatePanel()
+        public GeneralTemplatePanel(double width, double height)
         {
             InitializeComponent();
+            this.Width = width; this.Height = height;
+            GeneralTemplateSP.Width = width; GeneralTemplateSP.Height = height;
+            GeneralTemplateGrid.Width = width; GeneralTemplateGrid.Height = height;
             var tbs = new TextBox[] { ModelTB, ViewTB, ViewModelTB, RepositoryTB, DNRepositoryTB};
             var btns = new Button[] { ModelBrowseBtn, ViewBrowseBtn, ViewModelBrowseBtn, RepositoryBrowseBtn, DNRepositoryBrowseBtn};
             var prjTypes = Enum.GetValues(typeof(ProjectType)).Cast<ProjectType>().ToList();
