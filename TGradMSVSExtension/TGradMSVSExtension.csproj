@@ -23,8 +23,8 @@
     <ProjectGuid>{A0309809-5E6D-452B-AAD1-735609C86F2A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TGradMSVSExtention</RootNamespace>
-    <AssemblyName>TGradMSVSExtention</AssemblyName>
+    <RootNamespace>TGradMSVSExtension</RootNamespace>
+    <AssemblyName>TGradMSVSExtension</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <GeneratePkgDefFile>true</GeneratePkgDefFile>
     <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
@@ -59,7 +59,7 @@
     <Compile Include="SettingsViewModel.cs" />
     <Compile Include="MVVMSolutionManager.cs" />
     <Compile Include="MenuManager.cs" />
-    <Compile Include="MVVMExtentionPackage.cs" />
+    <Compile Include="MVVMExtensionPackage.cs" />
     <Compile Include="CreateClassesWindow.xaml.cs">
       <DependentUpon>CreateClassesWindow.xaml</DependentUpon>
     </Compile>
@@ -91,7 +91,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <VSCTCompile Include="MVVMExtentionPackage.vsct">
+    <VSCTCompile Include="MVVMExtensionPackage.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
       <SubType>Designer</SubType>
     </VSCTCompile>

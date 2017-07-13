@@ -8,7 +8,7 @@ using System.Windows.Controls;
 using System.ComponentModel;
 using System.Windows.Data;
 
-namespace TGradMSVSExtention
+namespace TGradMSVSExtension
 {
   
     public partial class SettingsView : Window

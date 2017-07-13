@@ -13,7 +13,7 @@ using EnvDTE;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
-namespace TGradMSVSExtention
+namespace TGradMSVSExtension
 {
 
     internal sealed class MenuManager

@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
-using TGradMSVSExtention.Properties;
+using TGradMSVSExtension.Properties;
 using System.IO;
 using EnvDTE;
 using System.Windows;
 using Newtonsoft.Json.Linq;
 
-namespace TGradMSVSExtention
+namespace TGradMSVSExtension
 {
     
     static class MVVMSolutionManager

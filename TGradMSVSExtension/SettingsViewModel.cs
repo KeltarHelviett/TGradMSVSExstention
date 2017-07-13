@@ -9,11 +9,11 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Windows;
 using System.Configuration;
-using TGradMSVSExtention.Properties;
+using TGradMSVSExtension.Properties;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace TGradMSVSExtention
+namespace TGradMSVSExtension
 {
     static class SettingsViewModel
     {

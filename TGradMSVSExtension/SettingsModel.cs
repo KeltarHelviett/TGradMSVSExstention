@@ -1,6 +1,6 @@
-﻿using TGradMSVSExtention.Properties;
+﻿using TGradMSVSExtension.Properties;
 
-namespace TGradMSVSExtention
+namespace TGradMSVSExtension
 {
     static class SettingsModel
     {

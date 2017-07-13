@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 
-namespace TGradMSVSExtention
+namespace TGradMSVSExtension
 {
   
     public partial class MVVMClassCreatorWindow : Window

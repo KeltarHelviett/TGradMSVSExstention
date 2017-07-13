@@ -13,11 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TGradMSVSExtention
+namespace TGradMSVSExtension
 {
-    /// <summary>
-    /// Interaction logic for GeneralTemplatePanel.xaml
-    /// </summary>
     public partial class GeneralTemplatePanel : UserControl
     {
         public GeneralTemplatePanel(double width, double height)
