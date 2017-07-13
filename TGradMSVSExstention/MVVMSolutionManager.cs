@@ -112,12 +112,12 @@ namespace TGradMSVSExtention
 
             static public void CreateViewClassSet(string className, string templateFileName, Project project)
             {
-                CreateClass("View", className, templateFileName, $"{className}.xaml.cs", project);
-                CreateClass("ViewXaml", className, templateFileName, $"{className}.xaml", project);
-                CreateClass("DetailView", className, templateFileName, $"{className}Detail.xaml.cs", project);
-                CreateClass("DetailViewXaml", className, templateFileName, $"{className}Detail.xaml", project);
-                CreateClass("MasterView", className, templateFileName, $"{className}Master.xaml.cs", project);
-                CreateClass("MasterViewXaml", className, templateFileName, $"{className}Master.xaml", project);
+                CreateClass("View", className, templateFileName, $"{className}View.xaml.cs", project);
+                CreateClass("ViewXaml", className, templateFileName, $"{className}View.xaml", project);
+                CreateClass("DetailView", className, templateFileName, $"{className}DetailView.xaml.cs", project);
+                CreateClass("DetailViewXaml", className, templateFileName, $"{className}DetailView.xaml", project);
+                CreateClass("MasterView", className, templateFileName, $"{className}sMasterView.xaml.cs", project);
+                CreateClass("MasterViewXaml", className, templateFileName, $"{className}sMasterView.xaml", project);
             }
 
             static public void CreateModelClassSet(string className, string templateFileName, Project project)
