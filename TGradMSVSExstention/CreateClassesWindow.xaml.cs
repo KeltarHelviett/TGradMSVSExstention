@@ -21,16 +21,19 @@ namespace TGradMSVSExtention
     {
         class TypedComboBox
         {
-            public ProjectType Type { set; get; }
+            public ClassType Type { set; get; }
             public ComboBox ComBox { set; get; }
         }
 
         public MVVMClassCreatorWindow()
         {
             InitializeComponent();
-            var cbs = new CheckBox[] { ModelCB, ViewCB, ViewModelCB, RepositoryCB, DatumNodeRepositoryCB};
-            var comboxes = new ComboBox[] { ModelComBox, ViewComBox, ViewModelComBox, RepositoryComBox, DNRepositoryComBox };
-            var types = new ProjectType[] { ProjectType.Model, ProjectType.View, ProjectType.ViewModel, ProjectType.Repository, ProjectType.DatumNodeRepository };
+            var cbs = new CheckBox[] { ModelCB, ViewCB, ViewModelCB, RepositoryCB, DNRepositoryCB, DetailViewCB, DetailViewModelCB,
+                MasterViewCB, MasterViewModelCB };
+            var comboxes = new ComboBox[] { ModelComBox, ViewComBox, ViewModelComBox, RepositoryComBox, DNRepositoryComBox, DetailViewComBox,
+                DetailVMComBox, MasterViewComBox, MasterVMComBox };
+            var types = new ClassType[] { ClassType.Model, ClassType.View, ClassType.ViewModel, ClassType.Repository, ClassType.DatumNodeRepository,
+                ClassType.DetailView, ClassType.DetailViewModel, ClassType.MasterView, ClassType.MasterViewModel };
             for (int i = 0; i < cbs.Length; ++i)
             {
                 cbs[i].Checked += MVVMClassCheckBoxChecked;
@@ -63,11 +66,11 @@ namespace TGradMSVSExtention
                 return;
             }
             List<string> templatesFileNames = new List<string>();
-            List<ProjectType> types = new List<ProjectType>();
-            CheckBox[] cbs = new CheckBox[] { ModelCB, ViewCB, ViewModelCB, RepositoryCB, DatumNodeRepositoryCB };
+            List<ClassType> types = new List<ClassType>();
+            var cbs = CreateClassesGrid.Children.OfType<CheckBox>().ToArray();
             foreach (var cb in cbs)
             {
-                if (cb.IsChecked.HasValue && cb.IsChecked.Value)
+                if (cb.IsChecked.HasValue && cb.IsChecked.Value && (cb.Tag is TypedComboBox))
                 {
                     templatesFileNames.Add(((cb.Tag as TypedComboBox).ComBox.SelectedItem as ComboBoxItem).Content.ToString());
                     types.Add((cb.Tag as TypedComboBox).Type);
@@ -79,22 +82,24 @@ namespace TGradMSVSExtention
 
         private void FillComboBoxes()
         {
-            ComboBox[] cbs = new ComboBox[] { ModelComBox, ViewComBox, ViewModelComBox, RepositoryComBox, DNRepositoryComBox };
-            string[] names = new string[] { "Model", "View", "ViewModel", "Repository", "DatumNodeRepository" };
-            var pairs = cbs.Zip(names, (cb, n) => new { CB = cb, Name = n });
-            foreach (var pair in pairs)
+            var cbs = CreateClassesGrid.Children.OfType<CheckBox>().ToArray();
+            foreach (var cb in cbs)
             {
-                string folder = SettingsViewModel.TemplateSrcSettings.GetTemplateSource(pair.Name);
-                if (folder != null && folder != "")
+                if (cb.Tag is TypedComboBox)
                 {
-                    var files = Directory.GetFiles(folder, "*.cst", SearchOption.TopDirectoryOnly).Select(System.IO.Path.GetFileName);
-                    foreach (var file in files)
+                    var tcombox = cb.Tag as TypedComboBox;
+                    string folder = SettingsViewModel.TemplateSrcSettings.GetTemplateSource(tcombox.Type.ToString());
+                    if (folder != null && folder != "")
                     {
-                        pair.CB.Items.Add(new ComboBoxItem() { Content = file });
+                        var files = Directory.GetFiles(folder, "*.cst", SearchOption.TopDirectoryOnly).Select(System.IO.Path.GetFileName);
+                        foreach (var file in files)
+                        {
+                            tcombox.ComBox.Items.Add(new ComboBoxItem() { Content = file });
+                        }
                     }
+                    tcombox.ComBox.Items.Add(new ComboBoxItem() { Content = "Default" });
+                    tcombox.ComBox.SelectedIndex = 0;
                 }
-                pair.CB.Items.Add(new ComboBoxItem() { Content = "Default" });
-                pair.CB.SelectedIndex = 0;
             }
         }
 

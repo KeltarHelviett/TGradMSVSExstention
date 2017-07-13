@@ -361,5 +361,53 @@ namespace %namespace%
                 this["DefaultDetailView"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DetailViewFolder {
+            get {
+                return ((string)(this["DetailViewFolder"]));
+            }
+            set {
+                this["DetailViewFolder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DetailViewModelFolder {
+            get {
+                return ((string)(this["DetailViewModelFolder"]));
+            }
+            set {
+                this["DetailViewModelFolder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MasterViewFolder {
+            get {
+                return ((string)(this["MasterViewFolder"]));
+            }
+            set {
+                this["MasterViewFolder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MasterViewModelFolder {
+            get {
+                return ((string)(this["MasterViewModelFolder"]));
+            }
+            set {
+                this["MasterViewModelFolder"] = value;
+            }
+        }
     }
 }

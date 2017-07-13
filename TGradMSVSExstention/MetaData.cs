@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace TGradMSVSExtention
 {
+    enum ClassType
+    {
+        Model = 0, View = 1, ViewModel = 2, Repository, DatumNodeRepository,
+        DetailView, MasterView, DetailViewModel, MasterViewModel
+    }
+
     enum ProjectType
     {
         Model = 0, View = 1, ViewModel = 2, Repository, DatumNodeRepository
@@ -14,13 +20,30 @@ namespace TGradMSVSExtention
     static class MetaData
     {
         public static string[] ProjectDisplayNames = new string[] { "Model", "View", "View Model", "Repository", "DN Repository"};
-        public static Dictionary<ProjectType, string> ProjectTypeToProjectDisplayName = new Dictionary<ProjectType, string>
+        public static Dictionary<ClassType, string> ClassTypeToClassDisplayName = new Dictionary<ClassType, string>
         {
-            { ProjectType.Model, "Model" },
-            { ProjectType.View, "View" },
-            { ProjectType.ViewModel, "View Model" },
-            { ProjectType.Repository, "Repository" },
-            { ProjectType.DatumNodeRepository, "DN Repository" }
+            { ClassType.Model, "Model" },
+            { ClassType.View, "View" },
+            { ClassType.ViewModel, "View Model" },
+            { ClassType.Repository, "Repository" },
+            { ClassType.DatumNodeRepository, "DN Repository" },
+            { ClassType.DetailView, "Detail View" },
+            { ClassType.DetailViewModel, "Detail VM" },
+            { ClassType.MasterView, "Master View" },
+            { ClassType.MasterViewModel, "Master VM" }
+        };
+
+        public static Dictionary<ClassType, ProjectType> ClassTypeToProjectType = new Dictionary<ClassType, ProjectType>
+        {
+            { ClassType.Model, ProjectType.Model },
+            { ClassType.View, ProjectType.View },
+            { ClassType.ViewModel, ProjectType.ViewModel },
+            { ClassType.Repository, ProjectType.Repository },
+            { ClassType.DatumNodeRepository, ProjectType.DatumNodeRepository },
+            { ClassType.DetailView, ProjectType.View },
+            { ClassType.DetailViewModel, ProjectType.ViewModel },
+            { ClassType.MasterView, ProjectType.View },
+            { ClassType.MasterViewModel, ProjectType.ViewModel }
         };
     }
 }

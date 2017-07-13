@@ -28,7 +28,7 @@ namespace TGradMSVSExtention
             GeneralTemplateGrid.Width = width; GeneralTemplateGrid.Height = height;
             var tbs = new TextBox[] { ModelTB, ViewTB, ViewModelTB, RepositoryTB, DNRepositoryTB};
             var btns = new Button[] { ModelBrowseBtn, ViewBrowseBtn, ViewModelBrowseBtn, RepositoryBrowseBtn, DNRepositoryBrowseBtn};
-            var prjTypes = Enum.GetValues(typeof(ProjectType)).Cast<ProjectType>().ToList();
+            var prjTypes = Enum.GetValues(typeof(ClassType)).Cast<ClassType>().ToList();
             for (int i = 0; i < tbs.Length; ++i)
             {
                 btns[i].Tag = tbs[i];
@@ -55,7 +55,7 @@ namespace TGradMSVSExtention
             var tbs = GeneralTemplateGrid.Children.OfType<TextBox>().ToArray();
             foreach (var tb in tbs)
             {
-                SettingsViewModel.TemplateSrcSettings.SetTemplateSource(((ProjectType)tb.Tag).ToString(), tb.Text);
+                SettingsViewModel.TemplateSrcSettings.SetTemplateSource(((ClassType)tb.Tag).ToString(), tb.Text);
             }
         }
     }

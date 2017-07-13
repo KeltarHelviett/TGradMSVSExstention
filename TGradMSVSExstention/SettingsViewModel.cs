@@ -19,7 +19,7 @@ namespace TGradMSVSExtention
     {
         public static class TemplateSrcSettings
         {
-            static internal string[] srcs = new string[Enum.GetNames(typeof(ProjectType)).Length];
+            static internal string[] srcs = new string[Enum.GetNames(typeof(ClassType)).Length];
             static public void SetTemplateSource(string name, string value)
             {
                 if (Directory.Exists(value))
@@ -46,7 +46,7 @@ namespace TGradMSVSExtention
         static public bool Load()
         {
             int i = 0;
-            foreach (ProjectType type in Enum.GetValues(typeof(ProjectType)))
+            foreach (ClassType type in Enum.GetValues(typeof(ClassType)))
             {
                 TemplateSrcSettings.srcs[i++] = SettingsModel.Default[type.ToString() + "Folder"] as string;
             }
