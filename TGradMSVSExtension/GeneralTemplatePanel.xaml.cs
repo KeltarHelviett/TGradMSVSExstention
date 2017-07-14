@@ -20,17 +20,19 @@ namespace TGradMSVSExtension
         public GeneralTemplatePanel(double width, double height)
         {
             InitializeComponent();
+            this.DataContext = SettingsModel.Instance;
             this.Width = width; this.Height = height;
             GeneralTemplateSP.Width = width; GeneralTemplateSP.Height = height;
             GeneralTemplateGrid.Width = width; GeneralTemplateGrid.Height = height;
-            var tbs = new TextBox[] { ModelTB, ViewTB, ViewModelTB, RepositoryTB, DNRepositoryTB};
-            var btns = new Button[] { ModelBrowseBtn, ViewBrowseBtn, ViewModelBrowseBtn, RepositoryBrowseBtn, DNRepositoryBrowseBtn};
+            var tbs = new TextBox[] { ModelTB, ViewTB, ViewModelTB, RepositoryTB, DNRepositoryTB, DetailViewTB, MasterViewTB,
+                DetailVMTB, MasterVMTB };
+            var btns = new Button[] { ModelBrowseBtn, ViewBrowseBtn, ViewModelBrowseBtn, RepositoryBrowseBtn, DNRepositoryBrowseBtn,
+                DetailViewBrowseBtn, MasterViewBrowseBtn, DetailViewModelBrowseBtn, MasterViewModelBrowseBtn };
             var prjTypes = Enum.GetValues(typeof(ClassType)).Cast<ClassType>().ToList();
             for (int i = 0; i < tbs.Length; ++i)
             {
                 btns[i].Tag = tbs[i];
                 tbs[i].Tag = prjTypes[i];
-                tbs[i].Text = SettingsViewModel.TemplateSrcSettings.GetTemplateSource(prjTypes[i].ToString());
             }
         }
 
@@ -49,11 +51,7 @@ namespace TGradMSVSExtension
 
         public void AcceptBtnClick(object sender, RoutedEventArgs e)
         {
-            var tbs = GeneralTemplateGrid.Children.OfType<TextBox>().ToArray();
-            foreach (var tb in tbs)
-            {
-                SettingsViewModel.TemplateSrcSettings.SetTemplateSource(((ClassType)tb.Tag).ToString(), tb.Text);
-            }
+            SettingsViewModel.Save();
         }
     }
 }

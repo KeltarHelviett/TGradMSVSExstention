@@ -16,6 +16,7 @@ namespace TGradMSVSExtension
         public SettingsView()
         {
             InitializeComponent();
+            DataContext = SettingsModel.Instance;
         }
 
         private void GeneralTemplatesTVISelected(object sender, RoutedEventArgs e)
@@ -36,6 +37,11 @@ namespace TGradMSVSExtension
         private void CancelBtnClick(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void WindowClosed(object sender, EventArgs e)
+        {
+            SettingsViewModel.Undo();
         }
     }
 }

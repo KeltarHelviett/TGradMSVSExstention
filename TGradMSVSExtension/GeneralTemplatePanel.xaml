@@ -5,9 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TGradMSVSExtension"
              mc:Ignorable="d" Width="359.605" Height="338.525">
-    <StackPanel x:Name="GeneralTemplateSP" >
-        <Grid Height="338" Margin="0,0,10,0" x:Name="GeneralTemplateGrid">
+    <StackPanel x:Name="GeneralTemplateSP">
+        <Grid Height="338" x:Name="GeneralTemplateGrid" Margin="0,0,10,0">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -20,21 +24,34 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="70"/>
             </Grid.ColumnDefinitions>
-            <Label x:Name="ModelLabel" Content="Model" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" Height="26" Width="44"/>
-            <Label x:Name="ViewLabel" Content="View" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" Grid.Row="1" Height="26" Width="35"/>
-            <Label x:Name="ViewModelLabel" Content="View Model" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" Grid.Row="2" Height="26" Width="79"/>
-            <Label x:Name="RepositoryLabel" Content="Repository" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" Grid.Row="3" Height="26" Width="66"/>
-            <Label x:Name="DNRepositoryLabel" Content="DN Repository" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" Grid.Row="4" Height="26" Width="94" Grid.ColumnSpan="2"/>
-            <TextBox x:Name="ModelTB" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="3" VerticalAlignment="Top" Width="Auto" MinWidth="200"/>
-            <TextBox x:Name="ViewTB" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="3" VerticalAlignment="Top" Width="Auto" Grid.Row="1" MinWidth="200"/>
-            <TextBox x:Name="ViewModelTB" Grid.Column="1" Height="22" Margin="3" VerticalAlignment="Top" Grid.Row="2" HorizontalAlignment="Left" Width="Auto" MinWidth="200"/>
-            <TextBox x:Name="RepositoryTB" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="3" VerticalAlignment="Top" Width="Auto" Grid.Row="3" MinWidth="200"/>
-            <TextBox x:Name="DNRepositoryTB" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="3" VerticalAlignment="Top" Width="Auto" Grid.Row="4" MinWidth="200"/>
-            <Button x:Name="ModelBrowseBtn" Content="Browse..." Grid.Column="2" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Top" Width="47" Click="BrowseBtnClick" Tag="ModelTB" Height="20"/>
-            <Button x:Name="ViewBrowseBtn" Content="Browse..." Grid.Column="2" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Top" Width="47" Click="BrowseBtnClick" Grid.Row="1" Height="20"/>
-            <Button x:Name="ViewModelBrowseBtn" Content="Browse..." Grid.Column="2" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Top" Width="47" Click="BrowseBtnClick" Grid.Row="2" Height="20"/>
-            <Button x:Name="RepositoryBrowseBtn" Content="Browse..." Grid.Column="2" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Top" Width="47" Click="BrowseBtnClick" Grid.Row="3" Height="20"/>
-            <Button x:Name="DNRepositoryBrowseBtn" Content="Browse..." Grid.Column="2" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Top" Width="47" Click="BrowseBtnClick" Grid.Row="4" Height="20"/>
+            <Label x:Name="ModelLabel" Content="Model" HorizontalAlignment="Left" Margin="3,4,0,0" VerticalAlignment="Top" Height="26" Width="44" Grid.Column="0" Grid.Row="0"/>
+            <Label x:Name="ViewLabel" Content="View" Margin="3,1,0,0" Grid.Column="0" Grid.Row="1" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="35"/>
+            <Label x:Name="DetailViewLabel" Content="Detail View" HorizontalAlignment="Left" Margin="3,0,0,1" Grid.Row="2" VerticalAlignment="Bottom" Height="26" Width="69"/>
+            <Label x:Name="MasterViewLabel" Content="Master View" Margin="3,1,12,0" Grid.Row="3" Height="27" VerticalAlignment="Top"/>
+            <Label x:Name="ViewModelLabel" Content="View Model" Margin="0,5,8,0" Grid.Row="4" Height="27" VerticalAlignment="Top" HorizontalAlignment="Right" Width="79"/>
+            <Label x:Name="DetailViewModelLabel" Content="Detail VM" Margin="3,4,25,1" Grid.Row="5"/>
+            <Label x:Name="MasterViewModelLabel" Content="Master VM" HorizontalAlignment="Left" Margin="3,4,0,1" Grid.Row="6" Width="69"/>
+            <Label x:Name="RepositoryLabel" Content="Repository" HorizontalAlignment="Left" Margin="3,0,0,1" VerticalAlignment="Bottom" Grid.Row="7" Height="26" Width="66"/>
+            <Label x:Name="DNRepositoryLabel" Content="DN Repository" HorizontalAlignment="Left" Margin="3,0,0,1" VerticalAlignment="Bottom" Grid.Row="8" Height="26" Width="94" Grid.ColumnSpan="2"/>
+            <TextBox x:Name="ModelTB" Grid.Column="1" Text="{Binding Path=ModelFolder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Height="22" Margin="4,4,0,0" VerticalAlignment="Top" Width="200" MinWidth="200"/>
+            <TextBox x:Name="ViewTB" Grid.Column="1" Text="{Binding Path=ViewFolder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="22" Margin="3,3,0,0" VerticalAlignment="Top" Width="200" Grid.Row="1" MinWidth="200" />
+            <TextBox x:Name="DetailViewTB" Grid.Column="1" Text="{Binding Path=DetailViewFolder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="3,3,0,0" Grid.Row="2" TextWrapping="NoWrap" VerticalAlignment="Center" Width="200" MinWidth="200"/>
+            <TextBox x:Name="MasterViewTB" Grid.Column="1" Text="{Binding Path=MasterViewFolder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="3,3,0,0" Grid.Row="3" TextWrapping="NoWrap" VerticalAlignment="Center" Width="200" MinWidth="200"/>
+            <TextBox x:Name="ViewModelTB" Grid.Column="1" Text="{Binding Path=ViewModelFolder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="22" Margin="3,3,0,0" VerticalAlignment="Top" Grid.Row="4" HorizontalAlignment="Left" Width="200" MinWidth="200"/>
+            <TextBox x:Name="DetailVMTB" Grid.Column="1" Text="{Binding Path=DetailViewModelFolder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="3,3,0,0" Grid.Row="5" TextWrapping="NoWrap" VerticalAlignment="Center" Width="200" MinWidth="200"/>
+            <TextBox x:Name="MasterVMTB" Grid.Column="1" Text="{Binding Path=MasterViewModelFolder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="3,3,0,0" Grid.Row="6" TextWrapping="NoWrap" VerticalAlignment="Center" Width="200" MinWidth="200"/>
+            <TextBox x:Name="RepositoryTB" Grid.Column="1" Text="{Binding Path=RepositoryFolder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="22" Margin="3,3,0,0" VerticalAlignment="Center" Width="200" Grid.Row="7" MinWidth="200"/>
+            <TextBox x:Name="DNRepositoryTB" Grid.Column="1" Text="{Binding Path=DNRepositoryFolder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Height="22" Margin="3,3,0,0" VerticalAlignment="Center" Width="200" Grid.Row="8" MinWidth="200"/>
+            <Button x:Name="ModelBrowseBtn" Content="Browse..." Grid.Column="2" HorizontalAlignment="Left" Margin="3,3,0,0" VerticalAlignment="Center" Width="47" Click="BrowseBtnClick"  Height="20"/>
+            <Button x:Name="ViewBrowseBtn" Content="Browse..." Grid.Column="2" HorizontalAlignment="Left" Margin="3,3,0,0" VerticalAlignment="Center" Width="47" Click="BrowseBtnClick" Grid.Row="1" Height="20"/>
+            <Button x:Name="ViewModelBrowseBtn" Content="Browse..." Grid.Column="2" HorizontalAlignment="Left" Margin="3,3,0,0" VerticalAlignment="Center" Width="47" Click="BrowseBtnClick" Grid.Row="4" Height="20"/>
+            <Button x:Name="RepositoryBrowseBtn" Content="Browse..." Grid.Column="2" HorizontalAlignment="Left" Margin="3,3,0,0" VerticalAlignment="Center" Width="47" Click="BrowseBtnClick" Grid.Row="7" Height="20"/>
+            <Button x:Name="DNRepositoryBrowseBtn" Content="Browse..." Grid.Column="2" HorizontalAlignment="Left" Margin="3,3,0,0" VerticalAlignment="Center" Width="47" Click="BrowseBtnClick" Grid.Row="8" Height="20"/>
+            <Button x:Name="DetailViewBrowseBtn" Content="Browse..." Grid.Column="2" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" Width="47" Click="BrowseBtnClick" Height="20" Grid.Row="2"/>
+            <Button x:Name="MasterViewBrowseBtn" Content="Browse..." Grid.Column="2" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" Width="47" Click="BrowseBtnClick" Height="20" Grid.Row="3"/>
+            <Button x:Name="DetailViewModelBrowseBtn" Content="Browse..." Grid.Column="2" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" Width="47" Click="BrowseBtnClick" Grid.Row="5" Height="20"/>
+            <Button x:Name="MasterViewModelBrowseBtn" Content="Browse..." Grid.Column="2" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" Width="47" Click="BrowseBtnClick" Grid.Row="6" Height="20"/>
+
 
         </Grid>
     </StackPanel>
