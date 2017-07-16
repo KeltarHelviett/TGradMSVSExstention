@@ -21,6 +21,7 @@ namespace TGradMSVSExtension
 
         public const int CreateClassesCmdId = 0x1023;
         public const int SettingsCmdId = 0x1024;
+        public const int CreateClassesProjectNodeItemCmdId = 0x1026;
 
         public static readonly Guid CommandSet = new Guid("fc766c36-b4c6-4d8f-a8b1-f8f2df0a9558");
 
@@ -40,10 +41,13 @@ namespace TGradMSVSExtension
             {
                 CommandID createClassesCmdId = new CommandID(CommandSet, CreateClassesCmdId);
                 CommandID settingsCmdId = new CommandID(CommandSet, SettingsCmdId);
+                CommandID createClassesProjectNodeItemCmdId = new CommandID(CommandSet, CreateClassesProjectNodeItemCmdId);
                 MenuCommand createClasses = new MenuCommand(this.CreateClassesMenuItemCallback, createClassesCmdId);
                 MenuCommand settings = new MenuCommand(this.SettingsMenuItemCallback, settingsCmdId);
+                MenuCommand createClassesProjectItemNode = new MenuCommand(this.CreateClassesProjectNodeMenuItemCallback, createClassesProjectNodeItemCmdId);
                 commandService.AddCommand(createClasses);
                 commandService.AddCommand(settings);
+                commandService.AddCommand(createClassesProjectItemNode);
             }
             SettingsViewModel.Load();
             DTE dte = (DTE)this.ServiceProvider.GetService(typeof(DTE));
@@ -77,6 +81,20 @@ namespace TGradMSVSExtension
         private void SettingsMenuItemCallback(object sender, EventArgs e)
         {
             new SettingsView().Show(); 
+        }
+
+        private void CreateClassesProjectNodeMenuItemCallback(object sender, EventArgs e)
+        {
+            DTE dte = (DTE)this.ServiceProvider.GetService(typeof(DTE));
+            if (dte.SelectedItems.Count != 1)
+                return;
+            string className = dte.SelectedItems.Item(1).ProjectItem.Name;
+            int index = className.IndexOf('.');
+            if (index != -1)
+            {
+                className = className.Substring(0, index);
+                new MVVMClassCreatorWindow(className).Show();
+            }
         }
     }
 }

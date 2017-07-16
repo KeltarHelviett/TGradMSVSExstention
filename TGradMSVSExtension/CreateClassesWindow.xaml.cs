@@ -43,6 +43,11 @@ namespace TGradMSVSExtension
             FillComboBoxes();
         }
 
+        public MVVMClassCreatorWindow(string className): this()
+        {
+            ClassNameTB.Text = className;
+        }
+
         private void MVVMClassCheckBoxChecked(object sender, RoutedEventArgs e)
         {
             var cb = sender as CheckBox;

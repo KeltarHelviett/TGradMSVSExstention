@@ -43,6 +43,9 @@
       <Group guid="guidCmdSet" id="MVVMSubMenuGrpId" priority="0x1000">
         <Parent guid="guidCmdSet" id="MVVMClassCreationMenu"/>
       </Group>
+      <Group guid="guidCmdSet" id="MVVMRightClickItemNodeGrpId" priority="0x0000">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_ITEMNODE"/>
+      </Group>
     </Groups>
 
     <Menus>
@@ -84,6 +87,15 @@
           <CommandName></CommandName>
         </Strings>
       </Button>
+
+      <Button guid="guidCmdSet" id="CreateClassesProjectItemNodeMenuItem" priority="0x1000" type="Button">
+        <Parent guid="guidCmdSet" id="MVVMRightClickItemNodeGrpId"/>
+        <CommandFlag>TextOnly</CommandFlag>
+        <Strings>
+          <ButtonText>Create Classes...</ButtonText>
+          <CommandName></CommandName>
+        </Strings>
+      </Button>
     </Buttons>
 
     <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
@@ -107,6 +119,8 @@
       <IDSymbol name="MVVMSubMenuGrpId" value="0x1022"/>
       <IDSymbol name="CreateClassesMenuItem" value="0x1023"/>
       <IDSymbol name="SettingsMenuItem" value="0x1024"/>
+      <IDSymbol name="MVVMRightClickItemNodeGrpId" value="0x1025"/>
+      <IDSymbol name="CreateClassesProjectItemNodeMenuItem" value="0x1026"/>
     </GuidSymbol>
     
 
