@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TGradMSVSExtension"
-             mc:Ignorable="d" Height="600" MaxWidth="500" MaxHeight="600" Width="496" MinWidth="500" MinHeight="604" Title="Create Classes">
-    <Grid x:Name="CreateClassesGrid" Margin="0,0,-18,-21" Height="600" VerticalAlignment="Top" HorizontalAlignment="Left" Width="500" MaxWidth="500" MinWidth="500" MaxHeight="600" MinHeight="596">
+             mc:Ignorable="d" Title="Create Classes" Height="Auto" Width="Auto" >
+    <Grid x:Name="CreateClassesGrid" Margin="0" VerticalAlignment="Top" HorizontalAlignment="Left">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="39*"/>
             <ColumnDefinition Width="61*"/>

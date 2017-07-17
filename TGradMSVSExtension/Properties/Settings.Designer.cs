@@ -246,24 +246,24 @@ namespace %namespace%
             "end/2008\"\r\n    xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/" +
             "2006\" \r\n    xmlns:views=\"clr-namespace:DatumNode.Views;assembly=DatumNode.Contro" +
             "ls\" \r\n    xmlns:controls=\"clr-namespace:System.Windows.Controls;assembly=DatumNo" +
-            "de.Controls\" \r\n    xmlns:controls1=\"clr-namespace:Oss.Controls\" \r\n    xmlns:wind" +
-            "ows=\"clr-namespace:System.Windows;assembly=DatumNode.Controls\" \r\n    mc:Ignorabl" +
-            "e=\"d\"\r\n    d:DesignHeight=\"300\" d:DesignWidth=\"600\">\r\n    <Grid x:Name=\"LayoutRo" +
-            "ot\" Background=\"White\">\r\n        <Grid.RowDefinitions>\r\n            <RowDefiniti" +
-            "on Height=\"auto\"/>\r\n            <RowDefinition/>\r\n        </Grid.RowDefinitions>" +
-            "\r\n        <StackPanel Orientation=\"Horizontal\">\r\n            <TextBlock Margin=\"" +
-            "3\" VerticalAlignment=\"Center\" Text=\"Фильтр\"/>\r\n            <TextBox Width=\"100\" " +
-            "Margin=\"0,3,3,3\" Text=\"{Binding Path=FilterText, Mode=TwoWay}\" windows:BindingHe" +
-            "lper.UpdateSourceOnChange=\"True\"/>\r\n            <controls:CustomDatePicker Margi" +
-            "n=\"3\" SelectedDate=\"{Binding Path=Filter.Date, Mode=TwoWay}\" windows:BindingHelp" +
-            "er.UpdateSourceOnChange=\"True\"/>\r\n            <CheckBox Margin=\"3\" VerticalAlign" +
-            "ment=\"Center\" IsChecked=\"{Binding Path=Filter.IsClosed, Mode=TwoWay}\" Content=\"З" +
-            "акрытые\" windows:BindingHelper.UpdateSourceOnChange=\"True\"/>\r\n            <contr" +
-            "ols1:Toolbar ShowDeleteDialog=\"True\"/>\r\n        </StackPanel>\r\n        <controls" +
-            ":CustomDataGrid Grid.Row=\"1\" IsReadOnly=\"True\" MaxColumnAutoWidth=\"9999\" AutoGen" +
-            "erateColumns=\"True\" ItemsSource=\"{Binding Path=ItemsView}\" SelectedItem=\"{Bindin" +
-            "g Path=CurrentItem, Mode=TwoWay}\" SelectionMode=\"Single\"/>\r\n    </Grid>\r\n</views" +
-            ":UserView>")]
+            "de.Controls\" \r\n    xmlns:controls1=\"clr-namespace:Oss.Controls;assembly=Oss.Comm" +
+            "on.Views\" \r\n    xmlns:windows=\"clr-namespace:System.Windows;assembly=DatumNode.C" +
+            "ontrols\" \r\n    mc:Ignorable=\"d\"\r\n    d:DesignHeight=\"300\" d:DesignWidth=\"600\">\r\n" +
+            "    <Grid x:Name=\"LayoutRoot\" Background=\"White\">\r\n        <Grid.RowDefinitions>" +
+            "\r\n            <RowDefinition Height=\"auto\"/>\r\n            <RowDefinition/>\r\n    " +
+            "    </Grid.RowDefinitions>\r\n        <StackPanel Orientation=\"Horizontal\">\r\n     " +
+            "       <TextBlock Margin=\"3\" VerticalAlignment=\"Center\" Text=\"Фильтр\"/>\r\n       " +
+            "     <TextBox Width=\"100\" Margin=\"0,3,3,3\" Text=\"{Binding Path=FilterText, Mode=" +
+            "TwoWay}\" windows:BindingHelper.UpdateSourceOnChange=\"True\"/>\r\n            <contr" +
+            "ols:CustomDatePicker Margin=\"3\" SelectedDate=\"{Binding Path=Filter.Date, Mode=Tw" +
+            "oWay}\" windows:BindingHelper.UpdateSourceOnChange=\"True\"/>\r\n            <CheckBo" +
+            "x Margin=\"3\" VerticalAlignment=\"Center\" IsChecked=\"{Binding Path=Filter.IsClosed" +
+            ", Mode=TwoWay}\" Content=\"Закрытые\" windows:BindingHelper.UpdateSourceOnChange=\"T" +
+            "rue\"/>\r\n            <controls1:Toolbar ShowDeleteDialog=\"True\"/>\r\n        </Stac" +
+            "kPanel>\r\n        <controls:CustomDataGrid Grid.Row=\"1\" IsReadOnly=\"True\" MaxColu" +
+            "mnAutoWidth=\"9999\" AutoGenerateColumns=\"True\" ItemsSource=\"{Binding Path=ItemsVi" +
+            "ew}\" SelectedItem=\"{Binding Path=CurrentItem, Mode=TwoWay}\" SelectionMode=\"Singl" +
+            "e\"/>\r\n    </Grid>\r\n</views:UserView>")]
         public string DefaultViewXaml {
             get {
                 return ((string)(this["DefaultViewXaml"]));
@@ -308,23 +308,24 @@ namespace %namespace%
             "ion/blend/2008\"\r\n    xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatib" +
             "ility/2006\"\r\n    xmlns:views=\"clr-namespace:DatumNode.Views;assembly=DatumNode.C" +
             "ontrols\"\r\n    xmlns:sdk=\"http://schemas.microsoft.com/winfx/2006/xaml/presentati" +
-            "on/sdk\"\r\n    xmlns:controls=\"clr-namespace:Oss.Controls\"\r\n    mc:Ignorable=\"d\"\r\n" +
-            "    d:DesignHeight=\"300\" d:DesignWidth=\"745\">\r\n    <Grid x:Name=\"LayoutRoot\">\r\n " +
-            "       <Grid.ColumnDefinitions>\r\n            <ColumnDefinition Width=\"1*\"/>\r\n   " +
-            "         <ColumnDefinition Width=\"auto\"/>\r\n            <ColumnDefinition Width=\"" +
-            "2*\"/>\r\n        </Grid.ColumnDefinitions>\r\n        <views:DataContentPresenter x:" +
-            "Name=\"Master\" Content=\"{Binding Path=MasterViewModel}\"/>\r\n        <sdk:GridSplit" +
-            "ter Grid.Column=\"1\" VerticalAlignment=\"Stretch\" HorizontalAlignment=\"Center\" Vis" +
-            "ibility=\"{Binding ElementName=CheckBox, Path=IsChecked, Converter={StaticResourc" +
-            "e BooleanToVisibilityConverter}}\" />\r\n        <Grid Grid.Row=\"0\" Grid.Column=\"2\"" +
-            ">\r\n            <Grid.RowDefinitions>\r\n                <RowDefinition Height=\"Aut" +
-            "o\"/>\r\n                <RowDefinition/>\r\n            </Grid.RowDefinitions>\r\n    " +
-            "        <controls:CustomCheckBox Grid.Row=\"0\" Grid.Column=\"0\" Target=\"{Binding E" +
-            "lementName=Master}\" x:Name=\"CheckBox\" Content=\"{Binding Path=MasterViewModel.Cur" +
-            "rentItem}\" IsChecked=\"True\" Visibility=\"{Binding Path=CurrentItem, Converter={St" +
-            "aticResource NullToVisibilityConverter}}\"/>\r\n            <views:DataContentPrese" +
-            "nter Grid.Row=\"1\" Grid.Column=\"0\" x:Name=\"Detail\" Content=\"{Binding Path=DetailV" +
-            "iewModel}\"/>\r\n        </Grid>\r\n    </Grid>\r\n</views:UserView>  ")]
+            "on/sdk\"\r\n    xmlns:controls=\"clr-namespace:Oss.Controls;assembly=Oss.Common.View" +
+            "s\"\r\n    mc:Ignorable=\"d\"\r\n    d:DesignHeight=\"300\" d:DesignWidth=\"745\">\r\n    <Gr" +
+            "id x:Name=\"LayoutRoot\">\r\n        <Grid.ColumnDefinitions>\r\n            <ColumnDe" +
+            "finition Width=\"1*\"/>\r\n            <ColumnDefinition Width=\"auto\"/>\r\n           " +
+            " <ColumnDefinition Width=\"2*\"/>\r\n        </Grid.ColumnDefinitions>\r\n        <vie" +
+            "ws:DataContentPresenter x:Name=\"Master\" Content=\"{Binding Path=MasterViewModel}\"" +
+            "/>\r\n        <sdk:GridSplitter Grid.Column=\"1\" VerticalAlignment=\"Stretch\" Horizo" +
+            "ntalAlignment=\"Center\" Visibility=\"{Binding ElementName=CheckBox, Path=IsChecked" +
+            ", Converter={StaticResource BooleanToVisibilityConverter}}\" />\r\n        <Grid Gr" +
+            "id.Row=\"0\" Grid.Column=\"2\">\r\n            <Grid.RowDefinitions>\r\n                " +
+            "<RowDefinition Height=\"Auto\"/>\r\n                <RowDefinition/>\r\n            </" +
+            "Grid.RowDefinitions>\r\n            <controls:CustomCheckBox Grid.Row=\"0\" Grid.Col" +
+            "umn=\"0\" Target=\"{Binding ElementName=Master}\" x:Name=\"CheckBox\" Content=\"{Bindin" +
+            "g Path=MasterViewModel.CurrentItem}\" IsChecked=\"True\" Visibility=\"{Binding Path=" +
+            "CurrentItem, Converter={StaticResource NullToVisibilityConverter}}\"/>\r\n         " +
+            "   <views:DataContentPresenter Grid.Row=\"1\" Grid.Column=\"0\" x:Name=\"Detail\" Cont" +
+            "ent=\"{Binding Path=DetailViewModel}\"/>\r\n        </Grid>\r\n    </Grid>\r\n</views:Us" +
+            "erView>  ")]
         public string DefaultMasterViewXaml {
             get {
                 return ((string)(this["DefaultMasterViewXaml"]));
