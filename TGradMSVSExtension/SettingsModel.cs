@@ -33,7 +33,7 @@ namespace TGradMSVSExtension
             set
             {
                 modelFolder = value;
-                RaisePropertyChanged("ModelFolder"); 
+                RaisePropertyChanged(nameof(ModelFolder)); 
             }
             get { return modelFolder; }
         }
@@ -45,7 +45,7 @@ namespace TGradMSVSExtension
             set
             {
                 viewFolder = value;
-                RaisePropertyChanged("ViewFolder");
+                RaisePropertyChanged(nameof(ViewFolder));
             }
             get { return viewFolder; }
         }
@@ -57,7 +57,7 @@ namespace TGradMSVSExtension
             set
             {
                 detailViewFolder = value;
-                RaisePropertyChanged("DetailViewFolder");
+                RaisePropertyChanged(nameof(DetailViewFolder));
             }
             get { return detailViewFolder; }
         }
@@ -69,7 +69,7 @@ namespace TGradMSVSExtension
             set
             {
                 masterViewFolder = value;
-                RaisePropertyChanged("MasterViewFolder");
+                RaisePropertyChanged(nameof(MasterViewFolder));
             }
             get { return masterViewFolder; }
         }
@@ -81,7 +81,7 @@ namespace TGradMSVSExtension
             set
             {
                 viewModelFolder = value;
-                RaisePropertyChanged("ViewModelFolder");
+                RaisePropertyChanged(nameof(ViewModelFolder));
             }
             get { return viewModelFolder; }
         }
@@ -93,7 +93,7 @@ namespace TGradMSVSExtension
             set
             {
                 detailViewModelFolder = value;
-                RaisePropertyChanged("DetailViewModelFolder");
+                RaisePropertyChanged(nameof(DetailViewModelFolder));
             }
             get { return detailViewModelFolder; }
         }
@@ -105,28 +105,30 @@ namespace TGradMSVSExtension
             set
             {
                 masterViewModelFolder = value;
-                RaisePropertyChanged("MasterViewModelFolder");
+                RaisePropertyChanged(nameof(MasterViewModelFolder));
             }
             get { return masterViewModelFolder; }
         }
 
         private string repositoryFolder;
+
         public string RepositoryFolder
         {
             set
             {
                 repositoryFolder = value;
-                RaisePropertyChanged("RepositoryFolder");
+                RaisePropertyChanged(nameof(RepositoryFolder));
             }
             get { return repositoryFolder; }
         }
         private string dNRepositoryFolder;
+
         public string DNRepositoryFolder
         {
             set
             {
                 dNRepositoryFolder = value;
-                RaisePropertyChanged("DNRepositoryFolder");
+                RaisePropertyChanged(nameof(DNRepositoryFolder));
             }
             get { return dNRepositoryFolder; }
         }

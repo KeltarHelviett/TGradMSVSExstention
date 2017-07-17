@@ -17,6 +17,19 @@ namespace TGradMSVSExtension
     {
 
         static private DTE dte;
+        static private Dictionary<ClassType, Action<string, string, Project>> classCreatingFucntions = new Dictionary<ClassType, Action<string, string, Project>>
+        {
+            { ClassType.Model, MVVMClassCreator.CreateModelClassSet },
+            { ClassType.View, MVVMClassCreator.CreateViewClassSet },
+            { ClassType.DetailView, MVVMClassCreator.CreateDetailViewClassSet },
+            { ClassType.MasterView, MVVMClassCreator.CreateMasterViewClassSet },
+            { ClassType.ViewModel, MVVMClassCreator.CreateViewModelClassSet },
+            { ClassType.DetailViewModel, MVVMClassCreator.CreateDetailViewModelClassSet },
+            { ClassType.MasterViewModel, MVVMClassCreator.CreateMasterViewModelClassSet },
+            { ClassType.Repository, MVVMClassCreator.CreateRepositoryClassSet },
+            { ClassType.DatumNodeRepository, MVVMClassCreator.CreateDatumNodeRepositoryClassSet },
+
+        };
 
         static public void InitializeDTE(DTE dte)
         {
@@ -92,37 +105,7 @@ namespace TGradMSVSExtension
                 project.ProjectItems.AddFolder(className + "s");
             string templateFileFullName = templateFileName == "Default" ? "Default" : 
                 $@"{SettingsModel.Default[type.ToString() + "Folder"].ToString()}\{templateFileName}";
-            switch (type)
-            {
-                case ClassType.Model:
-                    MVVMClassCreator.CreateModelClassSet(className, templateFileFullName, project);
-                    break;
-                case ClassType.View:
-                    MVVMClassCreator.CreateViewClassSet(className, templateFileFullName, project);
-                    break;
-                case ClassType.ViewModel:
-                    MVVMClassCreator.CreateViewModelClassSet(className, templateFileFullName, project);
-                    break;
-                case ClassType.Repository:
-                    MVVMClassCreator.CreateRepositoryClassSet(className, templateFileFullName, project);
-                    break;
-                case ClassType.DatumNodeRepository:
-                    MVVMClassCreator.CreateDatumNodeRepositoryClassSet(className, templateFileFullName, project);
-                    break;
-                case ClassType.MasterView:
-                    MVVMClassCreator.CreateMasterViewClassSet(className, templateFileFullName, project);
-                    break;
-                case ClassType.MasterViewModel:
-                    MVVMClassCreator.CreateMasterViewModelClassSet(className, templateFileFullName, project);
-                    break;
-                case ClassType.DetailView:
-                    MVVMClassCreator.CreateDetailViewClassSet(className, templateFileFullName, project);
-                    break;
-                case ClassType.DetailViewModel:
-                    MVVMClassCreator.CreateDetailViewModelClassSet(className, templateFileFullName, project);
-                    break;
-
-            }
+            classCreatingFucntions[type](className, templateFileFullName, project);
         }
 
         private static class MVVMClassCreator
